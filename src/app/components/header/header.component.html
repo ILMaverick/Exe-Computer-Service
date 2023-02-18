@@ -1,6 +1,56 @@
-<div class="container bg-fixed bg-center h-1/6 min-h-[150px] min-w-full flex flex-col items-center" 
-    style="background-image: url(../../../assets/exe-background.svg)">
-    <button class="rounded-full bg-white h-3/4 w-1/6 min-w-[300px] my-auto" routerLink="home">
-        <img class="h-5/6 w-4/6 mx-auto" src="../../../assets/logo_vettoriale.svg" alt="Logo EXE">
+<div
+  class="relative bg-center m-auto rounded-t-[30px] max-w-[1680px] h-[210px] flex flex-col items-center"
+  style="background-image: url(../../../assets/exe-background.svg)"
+>
+  <div class="absolute -bottom-[15px] w-auto">
+    <div
+      class="rounded-t-[30px] bg-white h-[150px] w-[450px] outline outline-[3px] outline-[#005288ff]"
+    ></div>
+  </div>
+  <div class="absolute -bottom-[50px] inset-x-0 w-auto">
+    <div
+      class="rounded-[20px] h-[80px] w-auto bg-white border-[3px] border-[#005288ff] shadow-md shadow-[#948e8e] flex justify-between"
+    >
+      <button
+        class="w-fit rounded-[18px] my-auto ml-[20px] focus:scale-110 flex-none"
+      >
+        <img
+          class="w-[40px] transition ease-in-out delay-75 hover:scale-110 duration-150"
+          src="../../../assets/menu_icon.svg"
+          alt="menu"
+        />
+      </button>
+      <div class="min-w-[150xp] max-w-[300px] my-auto pl-[20px] flex-none">
+        <button class="rounded-[18px]">
+          <img
+            class="w-[40px]"
+            src="../../../assets/lente_ingrandimento.svg"
+            alt="lente_ingrandimento"
+          />
+        </button>
+      </div>
+      <div class="flex-1"></div>
+      <div class="h-fit w-fit my-auto mr-[20px] flex-none">
+        <button
+          class="rounded-[18px]" (click)="openOrHideMenu()">
+          <img class="w-[40px]" src="../../../assets/utente.svg" alt="utente" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="absolute -bottom-[15px] w-auto">
+    <button
+      class="relative rounded-t-[30px] bg-white h-[150px] w-[450px]"
+      routerLink="home"
+    >
+      <img
+        class="absolute -bottom-[2px] inset-x-[50px] w-[350px]"
+        src="../../../assets/logo_vettoriale.svg"
+        alt="logo_exe"
+      />
     </button>
+  </div>
+  <div class="absolute top-[240px] right-[20px] w-auto">
+    <app-login *ngIf="loginDisplay"></app-login>
+  </div>
 </div>

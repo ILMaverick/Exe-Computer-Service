@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  loginDisplay: boolean = false;
+
+  openOrHideMenu(){
+    this.loginDisplay = this.loginDisplay? false : true
+  }
 }

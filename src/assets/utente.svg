@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120"
+   height="120"
+   viewBox="0 0 120 120"
+   version="1.1"
+   id="svg5"
+   xml:space="preserve"
+   sodipodi:docname="utente.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="8"
+     inkscape:cx="50.4375"
+     inkscape:cy="91.5"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5"
+     showguides="true"
+     inkscape:lockguides="false" /><defs
+     id="defs2" /><g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="menu" /><path
+     id="rect6297"
+     style="fill:#005288;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10.7204;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="M 35.080078,76.470703 C 13.036043,81.979442 0,93.825547 0,100 v 5 c 0,9.56274 4.5082926,15 10,15 h 100 c 6.54569,0 10,-5.96841 10,-15 v -5 C 120,92.52543 106.30581,82.15669 84.775391,76.580078 77.468026,81.552726 68.838792,84.222789 60,84.246094 51.10042,84.21951 42.415698,81.509746 35.080078,76.470703 Z"
+     sodipodi:nodetypes="cssssssccc" /><circle
+     style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#005288;stroke-width:15.0093;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     id="path6295"
+     cy="39.999512"
+     cx="59.999512"
+     r="32.495346" /></svg>
