@@ -7,9 +7,28 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
-  loginDisplay: boolean = false;
+  isLogged: boolean = false
+  nomeUtente: string = 'Matteo'
 
-  openOrHideMenu(){
-    this.loginDisplay = this.loginDisplay? false : true
+  loginMenuDisplay: boolean = false;
+  sideMenuDisplay: boolean = false;
+  searchDisplay: boolean = false;
+
+  openOrHideLoginMenu(){
+    this.loginMenuDisplay = this.loginMenuDisplay ? false : true;
+    this.sideMenuDisplay = false
+    this.searchDisplay = false
+  }
+
+  openOrHideSideMenu(){
+    this.sideMenuDisplay = this.sideMenuDisplay ? false : true
+    this.loginMenuDisplay = false
+    this.searchDisplay = false
+  }
+
+  openOrHideSearch(){
+    this.searchDisplay = this.searchDisplay ? false : true
+    this.loginMenuDisplay = false
+    this.sideMenuDisplay = false
   }
 }

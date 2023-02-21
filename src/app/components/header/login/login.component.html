@@ -1,30 +1,47 @@
-<div
-  class="rounded-[20px] h-fit w-[300px] border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col items-center"
->
-  <div class="mt-[20px]">
-    <p class="h-[15px] text-xl text-left font-bold text-[#005288ff]">Utente</p>
-    <input
-      type="text"
-      maxlength="20"
-      placeholder="Codice Utente/Email/Telefono"
-      class="outline-0 rounded-full h-[30px] w-[250px] text-center bg-gray-200 hover:border-[2px] hover:border-[#435da5] focus-within:border-[2px] focus-within:border-[#005288ff]"
-      required
-    />
+<form #loginForm = 'ngForm' (ngSubmit)="submitLogin(loginForm)">
+  <div
+    class="rounded-[20px] h-fit w-[300px] border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col items-center"
+  >
+    <div class="mt-[20px]">
+      <p class="h-[15px] text-xl text-left font-bold text-[#005288ff]">
+        Utente
+      </p>
+        <input
+          type="text"
+          name="userName"
+          maxlength="20"
+          placeholder="Codice-Utente/Email/Telefono"
+          class="outline-0 rounded-full h-[30px] w-[250px] text-center bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:border-[#005288ff]"
+          ngModel
+          required
+      />
+    </div>
+    <div class="mt-[10px]">
+      <p class="h-[15px] text-xl text-left font-bold text-[#005288ff]">
+        Password
+      </p>
+        <input
+          type="password"
+          name="userPassword"
+          minlength="8"
+          placeholder="*Minimo 8 caratteri"
+          class="outline-0 rounded-full h-[30px] w-[250px] text-center bg-gray-200 border-[2px]  hover:border-[#435da5] focus-within:border-[#005288ff]"
+          ngModel
+          required
+        />
+    </div>
+    <div class="mt-[10px] mb-[20px] h-fit w-fit">
+      <button
+        class="relative rounded-full h-[40px] w-[80px] bg-[#005288ff] disabled:opacity-25"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        <p
+          class="absolute text-lg inset-x-0 -bottom-[5px] font-medium text-[#ffffff] disabled:opacity-25"
+        >
+          LOGIN
+        </p>
+      </button>
+    </div>
   </div>
-  <div class="mt-[10px]">
-    <p class="h-[15px] text-xl text-left font-bold text-[#005288ff]">
-      Password
-    </p>
-    <input
-      type="password"
-      placeholder="*Minimo 8 caratteri"
-      class="outline-0 rounded-full h-[30px] w-[250px] text-center bg-gray-200 hover:border-[2px] hover:border-[#435da5] focus-within:border-[2px] focus-within:border-[#005288ff]"
-      required
-    />
-  </div>
-  <div class="mt-[10px] mb-[20px] h-fit w-fit">
-  <button class="relative rounded-full h-[40px] w-[80px] bg-[#005288ff]">
-    <p class="absolute text-lg inset-x-0 -bottom-[5px] font-medium text-[#ffffff]" (click)="login()">LOGIN</p>
-  </button>
-  </div>
-</div>
+</form>

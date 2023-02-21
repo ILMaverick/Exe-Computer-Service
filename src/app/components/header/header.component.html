@@ -12,28 +12,35 @@
       class="rounded-[20px] h-[80px] w-auto bg-white border-[3px] border-[#005288ff] shadow-md shadow-[#948e8e] flex justify-between"
     >
       <button
-        class="w-fit rounded-[18px] my-auto ml-[20px] focus:scale-110 flex-none"
+        class="w-fit rounded-[18px] mt-[15px] pl-[20px] transition ease-in-out delay-75 hover:scale-110 duration-150 flex" (click)="openOrHideSideMenu()"
       >
         <img
-          class="w-[40px] transition ease-in-out delay-75 hover:scale-110 duration-150"
+          class="w-[40px]"
           src="../../../assets/menu_icon.svg"
           alt="menu"
         />
+        <p class="pt-[20px] pl-[10px] text-[25px] text-[#005288ff]">Menu</p>
       </button>
-      <div class="min-w-[150xp] max-w-[300px] my-auto pl-[20px] flex-none">
-        <button class="rounded-[18px]">
+      <div class="min-w-[150xp] max-w-[300px] pl-[20px] flex">
+        <button class="w-fit rounded-[18px] transition ease-in-out delay-75 hover:scale-110 duration-150">
           <img
             class="w-[40px]"
             src="../../../assets/lente_ingrandimento.svg"
             alt="lente_ingrandimento"
           />
         </button>
+        <input
+          name="userSearch"
+          placeholder="Cerca nel sito..."
+          class="outline-0 rounded-full h-[30px] w-auto mt-[27px] ml-[10px] px-[10px] text-left bg-gray-200 border-[2px]  hover:border-[#435da5] focus-within:border-[#005288ff]"
+        />
       </div>
       <div class="flex-1"></div>
-      <div class="h-fit w-fit my-auto mr-[20px] flex-none">
+      <div class="h-fit w-fit mt-[15px] mr-[40px] flex-none">
         <button
-          class="rounded-[18px]" (click)="openOrHideMenu()">
+          class="rounded-[18px] transition ease-in-out delay-75 hover:scale-110 duration-150 flex flex-row" (click)="openOrHideLoginMenu()">
           <img class="w-[40px]" src="../../../assets/utente.svg" alt="utente" />
+          <p class="pt-[15px] pl-[10px] text-2xl text-[#005288ff]">Benvenuto{{isLogged ? ', ' + nomeUtente : '. Accedi'}}!</p>
         </button>
       </div>
     </div>
@@ -50,7 +57,10 @@
       />
     </button>
   </div>
-  <div class="absolute top-[240px] right-[20px] w-auto">
-    <app-login *ngIf="loginDisplay"></app-login>
+  <div class="absolute top-[245px] right-[20px] w-auto">
+    <app-login *ngIf="loginMenuDisplay"></app-login>
+  </div>
+  <div class="absolute top-[245px] left-[20px] w-auto">
+    <app-menu *ngIf="sideMenuDisplay"></app-menu>
   </div>
 </div>
