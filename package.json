@@ -1,6 +1,6 @@
 {
   "name": "exe-app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,8 +20,11 @@
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
-    "body-parser": "^1.20.1",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

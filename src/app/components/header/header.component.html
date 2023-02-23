@@ -58,7 +58,7 @@
     </button>
   </div>
   <div class="absolute top-[245px] right-[20px] w-auto">
-    <app-login *ngIf="loginMenuDisplay"></app-login>
+    <app-login *ngIf="loginMenuDisplay && !isLogged"></app-login>
   </div>
   <div class="absolute top-[245px] left-[20px] w-auto">
     <app-menu *ngIf="sideMenuDisplay"></app-menu>
