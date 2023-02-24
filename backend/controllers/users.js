@@ -3,7 +3,7 @@ const dotEnv = require('dotenv');
 
 dotEnv.config({ path: '../backend/.env' });
 
-const get = (req, res) => {
+const getUsers = (req, res) => {
     db(process.env.DB_USER, process.env.DB_USER_PASSWORD).query('SELECT * FROM users', (err, result) => {
         if (err) {
             console.log(err);
@@ -22,4 +22,4 @@ const get = (req, res) => {
     );
 }
 
-module.exports = {get};
+module.exports = {getUsers};

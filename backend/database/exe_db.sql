@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 23, 2023 alle 02:08
+-- Creato il: Feb 24, 2023 alle 20:09
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -70,6 +70,20 @@ CREATE TABLE `status_description` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `techs`
+--
+
+CREATE TABLE `techs` (
+  `id_tech` int(11) NOT NULL,
+  `code_tech` varchar(10) NOT NULL,
+  `name` int(11) NOT NULL,
+  `surname` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `users`
 --
 
@@ -81,9 +95,15 @@ CREATE TABLE `users` (
   `tel_number` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `role` set('user','tech','comm') NOT NULL DEFAULT 'user',
   `date_signUp` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `users`
+--
+
+INSERT INTO `users` (`id_user`, `user_code`, `name`, `lastname`, `tel_number`, `email`, `password`, `date_signUp`) VALUES
+(1, 'UC00000001', 'Giulia', 'Fabiani', '+391234567890', 'giuliafabiani@gmail.com', 'Prova123!', '2023-02-23 22:29:13');
 
 --
 -- Indici per le tabelle scaricate
@@ -104,16 +124,23 @@ ALTER TABLE `interventions`
   ADD PRIMARY KEY (`id_intervent`),
   ADD UNIQUE KEY `code_intervent` (`code_intervent`),
   ADD KEY `interventions_ibfk_1` (`id_user_fk`),
-  ADD KEY `interventions_ibfk_2` (`id_tech_fk`),
-  ADD KEY `interventions_ibfk_3` (`id_hardware_fk`);
+  ADD KEY `interventions_ibfk_3` (`id_hardware_fk`),
+  ADD KEY `id_tech_fk` (`id_tech_fk`);
 
 --
 -- Indici per le tabelle `status_description`
 --
 ALTER TABLE `status_description`
   ADD PRIMARY KEY (`id_descr_status`),
-  ADD KEY `status_description_ibfk_1` (`id_tech_fk`),
-  ADD KEY `status_description_ibfk_2` (`id_interv_fk`);
+  ADD KEY `status_description_ibfk_2` (`id_interv_fk`),
+  ADD KEY `id_tech_fk` (`id_tech_fk`);
+
+--
+-- Indici per le tabelle `techs`
+--
+ALTER TABLE `techs`
+  ADD PRIMARY KEY (`id_tech`),
+  ADD UNIQUE KEY `code_tech` (`code_tech`);
 
 --
 -- Indici per le tabelle `users`
@@ -147,10 +174,16 @@ ALTER TABLE `status_description`
   MODIFY `id_descr_status` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT per la tabella `techs`
+--
+ALTER TABLE `techs`
+  MODIFY `id_tech` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Limiti per le tabelle scaricate
@@ -167,15 +200,15 @@ ALTER TABLE `harware`
 --
 ALTER TABLE `interventions`
   ADD CONSTRAINT `interventions_ibfk_1` FOREIGN KEY (`id_user_fk`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `interventions_ibfk_2` FOREIGN KEY (`id_tech_fk`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `interventions_ibfk_3` FOREIGN KEY (`id_hardware_fk`) REFERENCES `harware` (`id_hardware`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `interventions_ibfk_3` FOREIGN KEY (`id_hardware_fk`) REFERENCES `harware` (`id_hardware`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `interventions_ibfk_4` FOREIGN KEY (`id_tech_fk`) REFERENCES `techs` (`id_tech`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `status_description`
 --
 ALTER TABLE `status_description`
-  ADD CONSTRAINT `status_description_ibfk_1` FOREIGN KEY (`id_tech_fk`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `status_description_ibfk_2` FOREIGN KEY (`id_interv_fk`) REFERENCES `interventions` (`id_intervent`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `status_description_ibfk_2` FOREIGN KEY (`id_interv_fk`) REFERENCES `interventions` (`id_intervent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `status_description_ibfk_3` FOREIGN KEY (`id_tech_fk`) REFERENCES `techs` (`id_tech`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,6 +1,6 @@
-<form #loginForm="ngForm" (ngSubmit)="submitLogin(loginForm)">
+<form #loginForm="ngForm" (ngSubmit)="submitLogin()">
   <div
-    class="rounded-[20px] h-fit w-[300px] border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col items-center"
+    class="rounded-[20px] h-fit w-[310px] border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col items-center"
   >
     <div class="mt-[20px] w-[250px] ">
       <p class="h-[15px] text-xl text-left font-bold text-[#005288ff]">
@@ -8,11 +8,12 @@
       </p>
       <input
         type="text"
-        name="userName"
+        name="name"
+        #name="ngModel"
         maxlength="20"
         placeholder="Codice-Utente/Email/Telefono"
         class="outline-0 rounded-full h-[30px] w-[250px] text-center bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:border-[#005288ff]"
-        ngModel
+        [(ngModel)] = "user.name"
         required
       />
     </div>
@@ -21,15 +22,19 @@
       <p class="h-[15px] text-xl text-left font-bold text-[#005288ff]">
         Password
       </p>
+    <div class="h-[30px] w-fit flex">
       <input
-        type="password"
-        name="userPassword"
+        [type]="showedPassword"
+        name="password"
+        #password = "ngModel"
         minlength="8"
         placeholder="*Minimo 8 caratteri"
-        class="outline-0 rounded-full h-[30px] w-[250px] text-center bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:border-[#005288ff]"
-        ngModel
+        class="outline-0 rounded-full h-[30px] w-[250px] text-center bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:border-[#005288ff] shrink-0"
+        [(ngModel)] = "user.password"
         required
       />
+      <img class="h-2/3 my-auto pr-[20px] shrink-0 opacity-{{opacityEye}}" src="../../../../assets/occhio_password.svg" alt="occhio" (click)="showPassword()"/>
+    </div>
     </div>
     <a class="mx-auto text-sm text-center text-[#005288ff] flex" routerLink="recover/password">Password dimenticata?</a>
     <div class="mt-[10px] h-fit w-fit">
