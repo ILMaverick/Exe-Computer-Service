@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainpageComponent } from './components/main-page/mainpage.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RegistrationPageComponent } from './components/registration-page/registrationPage.component';
 
 const routes: Routes = [{
@@ -11,6 +12,10 @@ const routes: Routes = [{
 },
 {
   path: '', redirectTo: 'home', pathMatch: 'full'
+},
+{
+  path: '**', pathMatch: 'full', 
+  component: PageNotFoundComponent
 }
 ];
 

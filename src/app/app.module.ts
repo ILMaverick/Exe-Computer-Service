@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +18,7 @@ import { RegistrationPageComponent } from './components/registration-page/regist
 import { LoginComponent } from './components/header/userComponent/login/login.component';
 import { UserMenuComponent } from './components/header/userComponent/user-menu/userMenu.component';
 import { MenuComponent } from './components/header/menu/menu.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthenticationService } from './services/authentication.service';
 
 
@@ -30,7 +33,8 @@ import { AuthenticationService } from './services/authentication.service';
     LoginComponent,
     ServicespageComponent,
     MenuComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,14 @@ import { AuthenticationService } from './services/authentication.service';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
