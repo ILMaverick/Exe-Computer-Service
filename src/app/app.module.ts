@@ -20,6 +20,8 @@ import { UserMenuComponent } from './components/header/userComponent/user-menu/u
 import { MenuComponent } from './components/header/menu/menu.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthenticationService } from './services/authentication.service';
+import { SearchBarComponent } from './components/header/search-bar/search-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -34,7 +36,9 @@ import { AuthenticationService } from './services/authentication.service';
     ServicespageComponent,
     MenuComponent,
     UserMenuComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SearchBarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 const dotEnv = require('dotenv');
 
-dotEnv.config({ path: '../backend/.env' });
+dotEnv.config({ path: __dirname + '/../.env' });
 
 function createConnection(userName, password) {
 

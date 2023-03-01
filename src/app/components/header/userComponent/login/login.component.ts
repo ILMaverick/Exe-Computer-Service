@@ -31,12 +31,21 @@ export class LoginComponent {
   }
 
   submitLogin() {
-    this._auth.login(this.userName, this.userPassword);
-    this.backHome();
+    this._auth.login(this.userName, this.userPassword).subscribe((res) => {
+      if (res.result) {
+        this._auth.saveResponse(res.id_user, res.name);
+        this.backHome();
+      }
+      else {
+        alert(res.message);
+      };
+    })
+
   }
 
-  backHome() {
-    this.route.navigate(['']).then(() => location.reload());
+
+  public backHome() {
+    this.route.navigate(['home']).then(() => window.location.reload());
   }
 
 }

@@ -3,7 +3,7 @@ const usersRouter = require('./routes/usersRouter')
 const cors = require('cors')
 const dotEnv = require('dotenv');
 
-dotEnv.config({ path: '.env' });
+dotEnv.config({ path: __dirname + '/.env' });
 
 const app = express();
 

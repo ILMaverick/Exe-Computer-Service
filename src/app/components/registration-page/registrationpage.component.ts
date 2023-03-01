@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -7,23 +8,23 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: './registrationPage.component.html',
   styleUrls: ['./registrationPage.component.css']
 })
-export class RegistrationPageComponent implements OnInit{
+export class RegistrationPageComponent {
 
-constructor (_auth: AuthenticationService){}
+  constructor(private _route: Router, private _auth: AuthenticationService) { }
 
-  ngOnInit(): void {
-  }
+  public _user: User = new User;
+
+  showedPassword: string = 'password'
+  showedPasswordConfirm: string = 'password'
+  opacityEye: string = '100';
+  opacityEyeconfirmation: string = '100';
 
   regex = '^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]$';
 
-  showedPassword: string = 'password'
-  opacityEye: string = '100';
-
-  submitLogin() {    
-    if(this.checkPassword()){
-      
+  submitRegistration() {
+    if (this.checkPassword()) {
     }
-      
+
     // }
     // this._auth.login(form)
     // this.reload()

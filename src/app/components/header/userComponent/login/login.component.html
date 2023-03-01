@@ -1,87 +1,89 @@
-<form #loginForm="ngForm" (ngSubmit)="submitLogin()">
+<form #loginForm="ngForm" (ngSubmit)="submitLogin()" class="sm:max-lg:h-screen">
   <div
-    class="rounded-[20px] h-fit w-[360px] border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col items-center"
+    class="lg:rounded-[20px] lg:w-[300px] h-full border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col sm:max-lg:flex-row items-center"
   >
-    <div class="mt-[20px] mx-[30px] w-[250px]">
-      <p class="h-[15px] text-xl text-left font-bold text-[#005288ff]">
-        Utente
-      </p>
-      <input
-        type="text"
-        name = "userName"
-        #name="ngModel"
-        maxlength="40"
-        placeholder="Codice-Utente/Email/Telefono"
-        class="outline-0 rounded-full h-[30px] w-[250px] text-center bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:border-[#005288ff]"
-        (input)="onInputUserName($event)"
-        (ngModel)="userName"
-        required
-      />
-    </div>
-    <a
-      class="mx-auto text-sm text-center text-[#005288ff] flex"
-      routerLink="recover/user_name"
-      >Username dimenticata?</a
-    >
-    <div class="mt-[10px] w-[250px]">
-      <p class="h-[15px] text-xl text-left font-bold text-[#005288ff]">
-        Password
-      </p>
-      <div class="relative h-[30px] w-[250px] flex">
+    <div class="h-fil w-fit sm:max-lg:w-full sm:max-lg:mb-[15%] flex flex-col items-center">
+      <div class="lg:mt-[15px] mx-auto w-fit h-fit">
+        <p class="h-[15px] my-[5px] pl-[10px] text-xl text-left font-bold text-[#005288ff]">
+          Utente
+        </p>
         <input
-          [type]="showedPassword"
-          name = "userPassword"
-          #password="ngModel"
-          minlength="8"
-          placeholder="*Minimo 8 caratteri"
-          class="outline-0 rounded-full h-[30px] w-[250px] text-center bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:border-[#005288ff] shrink-0"
-          (input)="onInputPassword($event)"
-          (ngModel)="userPassword"
+          type="text"
+          name = "userName"
+          #name="ngModel"
+          maxlength="40"
+          placeholder="Codice-Utente/Email/Telefono"
+          class="rounded-full h-[30px] w-[250px] text-left mt-[5px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
+          (input)="onInputUserName($event)"
+          (ngModel)="userName"
           required
         />
-        <button
-          class="h-[20px] w-[20px]" type="button" (click)="showPassword()"
+        <a
+          class="ml-[50px] text-sm text-center w-auto text-[#005288ff] flex"
+          routerLink="recover/user_name"
+          >Username dimenticata?</a
         >
-          <img
-            [id] = "eyeDisplay"
-            class="absolute -right-[25px] inset-y-[5px] h-[20px] w-[20px]"
-            src="../../../../assets/occhio_password.svg"
-            alt="occhio"
+      </div>
+      <div class="mt-[10px] mx-auto w-fit h-fit">
+        <p class="h-[15px] pl-[10px] mt-[5px] mb-[10px] text-xl text-left font-bold text-[#005288ff]">
+          Password
+        </p>
+        <div class="relative h-[30px] w-[250px] mt-[5px]">
+          <input
+            [type]="showedPassword"
+            name = "userPassword"
+            #password="ngModel"
+            minlength="8"
+            placeholder="Minimo 8 caratteri"
+            class="rounded-full h-[30px] w-[250px] text-left pl-[20px] pr-[40px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff] shrink-0  "
+            (input)="onInputPassword($event)"
+            (ngModel)="userPassword"
+            required
           />
+          <button
+            class="h-[20px] w-[20px]" type="button" (click)="showPassword()"
+          >
+            <img
+              [id] = "eyeDisplay"
+              class="absolute right-[10px] inset-y-[5px] h-[20px] w-[20px]"
+              src="../../../../assets/occhio_password.svg"
+              alt="occhio"
+            />
+          </button>
+        </div>
+        <a
+          class="ml-[50px] mt-[5px] text-sm text-center text-[#005288ff]"
+          routerLink="recover/password"
+          >Password dimenticata?</a
+        >
+      </div>
+      <div class="mt-[10px] h-fit w-fit">
+        <button
+          class="rounded-full h-[40px] w-[80px] bg-[#005288ff] disabled:opacity-25"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          <p
+            class="text-lg inset-0 font-medium text-[#ffffff]"
+          >
+            LOGIN
+          </p>
         </button>
       </div>
-    </div>
-    <a
-      class="mx-auto text-sm text-center text-[#005288ff] flex"
-      routerLink="recover/password"
-      >Password dimenticata?</a
-    >
-    <div class="mt-[10px] h-fit w-fit">
-      <button
-        class="relative rounded-full h-[40px] w-[80px] bg-[#005288ff] disabled:opacity-25"
-        type="submit"
-        [disabled]="!loginForm.valid"
+      <p
+        class="mx-auto py-[5px] h-fit text-xs text-center text-[#005288ff] flex"
       >
-        <p
-          class="absolute text-lg inset-x-0 -bottom-[5px] font-medium text-[#ffffff] disabled:opacity-25"
-        >
-          LOGIN
-        </p>
-      </button>
-    </div>
-    <p
-      class="mx-auto pt-[5px] pb-0 h-fit text-xs text-center text-[#005288ff] flex"
-    >
-      oppure
-    </p>
-    <div class="mb-[20px]">
-      <button class="relative rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]">
-        <p
-          class="absolute text-sm -bottom-[7px] inset-x-0 font-light text-[#ffffff]"
-        >
-          REGISTRATI
-        </p>
-      </button>
+        oppure
+      </p>
+      <div class="mb-[20px]">
+        <button type="button" class="relative rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]" routerLink="registration">
+          <p
+            class="text-sm inset-0 font-light text-[#ffffff]"
+          >
+            REGISTRATI
+          </p>
+        </button>
+      </div>
     </div>
   </div>
 </form>
