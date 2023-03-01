@@ -1,52 +1,48 @@
 <header
-  class="h-[70px] lg:h-[200px] w-full max-w-[1680px] px-[15px] mx-auto fixed inset-x-0 flex flex-col items-center"
+  class="h-[90px] lg:h-[200px] w-full max-w-[1680px] px-[15px] mx-auto sm:max-lg:top-0 fixed inset-x-0 flex flex-col items-center"
 >
   <div
-    class="h-[15px] lg:h-[45px] w-full bg-white top-0 fixed z-10"
+    class="sm:max-lg:hidden h-[15px] lg:h-[45px] w-full bg-white top-0 fixed z-10"
   ></div>
   <div
-    class="invisible lg:visible bg-center rounded-t-[30px] h-full w-full z-20"
+    class="sm:max-lg:hidden bg-center rounded-t-[30px] h-full w-full z-20"
     style="background-image: url(../../../assets/exe-background.svg)"
   ></div>
 
   <div
-    class="absolute bottom-[4px] rounded-t-[30px] h-[75%] w-[25%] max-w-[400px] outline-none lg:outline-[2px] lg:outline-offset-0 outline-[#005288ff] z-30"
+    class="sm:max-lg:hidden absolute bottom-[4px] rounded-t-[30px] h-[75%] w-[25%] max-w-[400px] outline-none lg:outline-[2px] lg:outline-offset-0 outline-[#005288ff] z-30"
   ></div>
   <div
-    class="absolute rounded-[5px] lg:-bottom-[20%] lg:rounded-[20px] h-full lg:h-[40%] w-full z-40 bg-white border-t-[4px] border-x-[4px] border-[#005288ff] shadow-md shadow-[#948e8e] flex justify-around"
+    class="absolute rounded-b-[5px] lg:-bottom-[20%] lg:rounded-[20px] h-full lg:h-[40%] w-full z-40 bg-white border-t-[4px] border-x-[4px] border-[#005288ff] shadow-md shadow-[#948e8e] flex justify-around"
   >
     <button
-      class="h-[50%] my-auto pl-[15px] flex-shrink-0"
+      class="h-[50%] my-auto pl-[20px] flex-shrink-0"
       (click)="openOrHideSideMenu()"
     >
       <img class="h-full" src="../../../assets/menu_icon.svg" alt="menu" />
     </button>
-    <div class="min-w-[150xp] max-w-[300px] pl-[20px] flex">
-      <button
-        class="w-fit rounded-[18px] transition ease-in-out delay-75 hover:scale-110 duration-150"
-      >
-        <img
-          class="w-[40px]"
-          src="../../../assets/lente_ingrandimento.svg"
-          alt="lente_ingrandimento"
-        />
-      </button>
-    </div>
+    <button class="h-[50%] my-auto pl-[15px] flex-shrink-0">
+      <img
+        class="h-full"
+        src="../../../assets/lente_ingrandimento.svg"
+        alt="lente_ingrandimento"
+      />
+    </button>
     <div class="flex-1"></div>
-    <div class="h-fit w-fit mt-[15px] mr-[40px] flex-none">
+    <div class="h-full pr-[20px] flex flex-shrink-0">
       <button
-        class="rounded-[18px] transition ease-in-out delay-75 hover:scale-110 duration-150 flex flex-row"
+        class="h-[50%] my-auto flex flex-row flex-shrink-0"
         (click)="openOrHideLoginMenu()"
       >
-        <img class="w-[40px]" src="../../../assets/utente.svg" alt="utente" />
-        <p class="pt-[15px] pl-[10px] text-2xl text-[#005288ff]">
-          Benvenuto{{ isLogged ? ", " + nomeUtente : ". Accedi" }}!
+        <img class="h-full mr-[15px]" [src]="signInIcon" alt="utente" />
+        <p class="my-auto text-2xl text-[#005288ff]">
+          {{ isLogged ? "Ciao, " + nomeUtente : "Accedi" }}!
         </p>
       </button>
     </div>
   </div>
   <button
-    class="absolute inset-y-1 lg:inset-y-auto lg:bottom-[4px] lg:rounded-t-[30px] h-[90%] max-w-[150px] lg:h-[75%] lg:w-[25%] lg:max-w-[400px] lg:px-[3%] lg:pt-[1%] bg-white z-50"
+    class="absolute inset-y-2 lg:inset-y-auto lg:bottom-[4px] lg:rounded-t-[30px] h-[90%] max-w-[150px] lg:h-[75%] lg:w-[25%] lg:max-w-[400px] lg:px-[3%] lg:pt-[1%] bg-white z-50"
     routerLink="home"
   >
     <img
@@ -55,11 +51,15 @@
       alt="logo_exe"
     />
   </button>
-  <div class="absolute lg:top-[235px] lg:right-[20px] h-screen lg:h-fit sm:max-lg:inset-y-[70px] sm:max-lg:inset-x-0 z-30">
+  <div
+    class="absolute lg:top-[235px] lg:right-[20px] h-screen lg:h-fit sm:max-lg:inset-y-[70px] sm:max-lg:inset-x-0 lg:z-50 z-30"
+  >
     <app-login *ngIf="loginMenuDisplay && !isLogged"></app-login>
     <app-user-menu *ngIf="loginMenuDisplay && isLogged"></app-user-menu>
   </div>
-  <div class="absolute top-[65px] lg:top-[235px] lg:left-[20px] h-auto max-h-screen lg:h-fit sm:max-lg:inset-x-0 z-30">
+  <div
+    class="absolute top-[65px] lg:top-[235px] lg:left-[20px] h-auto max-h-screen lg:h-fit sm:max-lg:inset-x-0 lg:z-50 z-30"
+  >
     <app-menu *ngIf="sideMenuDisplay"></app-menu>
   </div>
 </header>

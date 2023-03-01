@@ -18,7 +18,7 @@ export class AuthenticationService {
   constructor(private _http: HttpClient) { };
 
   login(userName: string, password: string): Observable<ResultMessage> {
-    this._user.userName = userName;
+    this._user.userName = userName.toLowerCase();
     this._user.password = password;
     return this._http.post<ResultMessage>(environment.usersUrl + '/login', this._user);
   };

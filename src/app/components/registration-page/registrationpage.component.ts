@@ -13,13 +13,39 @@ export class RegistrationPageComponent {
   constructor(private _route: Router, private _auth: AuthenticationService) { }
 
   public _user: User = new User;
+  passwordConfirm: string = '';
 
-  showedPassword: string = 'password'
-  showedPasswordConfirm: string = 'password'
+  showedPassword: string = 'password';
+  showedConfirmationPassword: string = 'password';
+  displayEye: string = 'eyeFull';
+  displayEyeConfirmation: string = 'eyeFull';
   opacityEye: string = '100';
-  opacityEyeconfirmation: string = '100';
+  opacityEyeConfirmation: string = '100';
 
   regex = '^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]$';
+
+  onInputName(event: Event) {
+    this._user.name = (<HTMLInputElement>event.target).value;
+  }
+
+  onInputLastname(event: Event) {
+    this._user.lastname = (<HTMLInputElement>event.target).value;
+  }
+
+  onInputPassword(num: number, event: Event) {
+    num == 1 ? this._user.password = (<HTMLInputElement>event.target).value : 
+      this.passwordConfirm = (<HTMLInputElement>event.target).value;
+  }
+
+  showPassword(num: number) {
+    if (num == 1) {
+      this.showedPassword = this.showedPassword.match('password') ? 'text' : 'password';
+      this.displayEye = this.displayEye.match('eyeFull') ? 'eyeLess' : 'eyeFull';
+    } else {
+      this.showedConfirmationPassword = this.showedConfirmationPassword.match('password') ? 'text' : 'password';
+      this.displayEyeConfirmation = this.displayEyeConfirmation.match('eyeFull') ? 'eyeLess' : 'eyeFull';
+    }
+  }
 
   submitRegistration() {
     if (this.checkPassword()) {

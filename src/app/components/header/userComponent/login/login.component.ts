@@ -13,14 +13,9 @@ export class LoginComponent {
   public userPassword: string = '';
 
   showedPassword: string = 'password';
-  eyeDisplay: string = 'eyeFull';
+  displayEye: string = 'eyeFull';
 
   constructor(private route: Router, private _auth: AuthenticationService) { }
-
-  showPassword() {
-    this.showedPassword = this.showedPassword.match('password') ? 'text' : 'password';
-    this.eyeDisplay = this.eyeDisplay.match('eyeFull') ? 'eyeLess' : 'eyeFull';
-  }
 
   onInputUserName(event: Event) {
     this.userName = (<HTMLInputElement>event.target).value;
@@ -30,8 +25,13 @@ export class LoginComponent {
     this.userPassword = (<HTMLInputElement>event.target).value;
   }
 
+  showPassword() {
+    this.showedPassword = this.showedPassword.match('password') ? 'text' : 'password';
+    this.displayEye = this.displayEye.match('eyeFull') ? 'eyeLess' : 'eyeFull';
+  }
+
   submitLogin() {
-    this._auth.login(this.userName, this.userPassword).subscribe((res) => {
+    this._auth.login(this.correctInputsSpaces(this.userName),this.correctInputsSpaces(this.userPassword)).subscribe((res) => {
       if (res.result) {
         this._auth.saveResponse(res.id_user, res.name);
         this.backHome();
@@ -43,6 +43,9 @@ export class LoginComponent {
 
   }
 
+  correctInputsSpaces(string: string): string{
+    return string.replace(/\s/g,"");
+  }
 
   public backHome() {
     this.route.navigate(['home']).then(() => window.location.reload());

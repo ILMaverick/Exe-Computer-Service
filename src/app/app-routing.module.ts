@@ -10,7 +10,7 @@ const routes: Routes = [{
 {
   path: 'registration', component: RegistrationPageComponent
 },
-{ path: '', pathMatch: 'full', redirectTo: 'home' },
+{ path: '', pathMatch: 'prefix', redirectTo: 'home' },
 { path: '404', component: PageNotFoundComponent },
 {
   path: '**', pathMatch: 'full', redirectTo: '404'

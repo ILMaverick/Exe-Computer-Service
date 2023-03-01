@@ -6,36 +6,38 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
+  signInIcon: string = '../../../assets/not-logged-user.svg';
   isLogged: boolean = false;
   nomeUtente: string = '';
   loginMenuDisplay: boolean = false;
   sideMenuDisplay: boolean = false;
   searchDisplay: boolean = false;
 
-  constructor(private _auth: AuthenticationService) {};
+  constructor(private _auth: AuthenticationService) { }
 
   ngOnInit(): void {
-    if (this._auth.isLogged()){
+    if (this._auth.isLogged()) {
       this.isLogged = this._auth.isLogged();
       this.nomeUtente = this._auth.getName();
     }
+    this.signInIcon = this.isLogged ? '../../../assets/logged-user.svg' : '../../../assets/not-logged-user.svg';
   };
 
-  openOrHideLoginMenu(){
+  openOrHideLoginMenu() {
     this.loginMenuDisplay = this.loginMenuDisplay ? false : true;
     this.sideMenuDisplay = false
     this.searchDisplay = false
   };
 
-  openOrHideSideMenu(){
+  openOrHideSideMenu() {
     this.sideMenuDisplay = this.sideMenuDisplay ? false : true
     this.loginMenuDisplay = false
     this.searchDisplay = false
   };
 
-  openOrHideSearch(){
+  openOrHideSearch() {
     this.searchDisplay = this.searchDisplay ? false : true
     this.loginMenuDisplay = false
     this.sideMenuDisplay = false
