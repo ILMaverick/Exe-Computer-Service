@@ -11,17 +11,17 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ServicespageComponent } from './components/services-page/servicespage.component';
+import { PaginaServiziComponent } from './components/pagina-servizi/pagina-servizi.component';
 import { HeaderComponent } from './components/header/header.component';
-import { MainpageComponent } from './components/main-page/mainpage.component';
-import { RegistrationPageComponent } from './components/registration-page/registrationPage.component';
+import { PaginaPrincipaleComponent } from './components/pagina-principale/pagina-principale.component';
+import { PaginaRegistrazioneComponent } from './components/pagina-registrazione/pagina-registrazione.component';
 import { LoginComponent } from './components/header/userComponent/login/login.component';
-import { UserMenuComponent } from './components/header/userComponent/user-menu/userMenu.component';
-import { MenuComponent } from './components/header/menu/menu.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AuthenticationService } from './services/authentication.service';
-import { SearchBarComponent } from './components/header/search-bar/search-bar.component';
+import { MenuUtenteComponent } from './components/header/userComponent/menu-utente/menu-utente.component';
+import { MenuSitoComponent } from './components/header/menu-sito/menu-sito.component';
+import { PaginaNonTrovataComponent } from './components/pagina-non-trovata/pagina-non-trovata.component';
+import { AutenticazioneService } from './services/autenticazione.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { ConfrontaPasswordValidator } from './components/pagina-registrazione/pagina-registrazione/confronta-password-validator.directive';
 
 
 
@@ -30,15 +30,15 @@ import { FooterComponent } from './components/footer/footer.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    MainpageComponent,
-    RegistrationPageComponent,
+    PaginaPrincipaleComponent,
+    PaginaRegistrazioneComponent,
     LoginComponent,
-    ServicespageComponent,
-    MenuComponent,
-    UserMenuComponent,
-    PageNotFoundComponent,
-    SearchBarComponent,
-    FooterComponent
+    PaginaServiziComponent,
+    MenuSitoComponent,
+    MenuUtenteComponent,
+    PaginaNonTrovataComponent,
+    FooterComponent,
+    ConfrontaPasswordValidator
   ],
   imports: [
     BrowserModule,
@@ -56,7 +56,7 @@ import { FooterComponent } from './components/footer/footer.component';
       registrationStrategy: 'registerImmediately'
     })
   ],
-  providers: [AuthenticationService],
+  providers: [AutenticazioneService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { MenuUtenteComponent } from './menu-utente.component';
+
+describe('MenuUtenteComponent', () => {
+  let component: MenuUtenteComponent;
+  let fixture: ComponentFixture<MenuUtenteComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ MenuUtenteComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(MenuUtenteComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainpageComponent } from './components/main-page/mainpage.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { RegistrationPageComponent } from './components/registration-page/registrationPage.component';
+import { PaginaPrincipaleComponent } from './components/pagina-principale/pagina-principale.component';
+import { PaginaNonTrovataComponent } from './components/pagina-non-trovata/pagina-non-trovata.component';
+import { PaginaRegistrazioneComponent } from './components/pagina-registrazione/pagina-registrazione.component';
 
 const routes: Routes = [{
-  path: 'home', component: MainpageComponent
+  path: 'home', component: PaginaPrincipaleComponent
 },
 {
-  path: 'registration', component: RegistrationPageComponent
+  path: 'registrazione', component: PaginaRegistrazioneComponent
 },
-{ path: '', pathMatch: 'prefix', redirectTo: 'home' },
-{ path: '404', component: PageNotFoundComponent },
+{ path: '', pathMatch: 'full', redirectTo: 'home' },
+{ path: '404', component: PaginaNonTrovataComponent },
 {
   path: '**', pathMatch: 'full', redirectTo: '404'
 }

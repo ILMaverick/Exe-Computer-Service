@@ -1,5 +1,5 @@
 const express = require('express');
-const usersRouter = require('./routes/usersRouter')
+const utentiRouter = require('./routes/utentiRouter')
 const cors = require('cors')
 const dotEnv = require('dotenv');
 
@@ -10,11 +10,11 @@ const app = express();
 app.use(express.json())
 app.use(cors());
 
-app.use('/users', usersRouter);
+app.use('/utenti', utentiRouter);
 // app.use('/interventions', interventionsRouter);
 // app.use('/hardware', hardwareRouter);
 // app.use('/comm', commRouter);
 // app.use('/tech', techRouter);
 
 app.listen(process.env.SERVER_PORT, () =>
-    console.log(`Server EXE running on port:${process.env.SERVER_PORT}`))
+    console.log(`Server EXE online sulla porta:${process.env.SERVER_PORT}`))

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AutenticazioneService } from 'src/app/services/autenticazione.service';
 
 @Component({
   selector: 'app-login',
@@ -9,35 +9,35 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LoginComponent {
 
-  public userName: string = '';
-  public userPassword: string = '';
+  public nomeUtente: string = '';
+  public password: string = '';
 
-  showedPassword: string = 'password';
-  displayEye: string = 'eyeFull';
+  mostraPassword: string = 'password';
+  mostraOcchio: string = 'eyeFull';
 
-  constructor(private route: Router, private _auth: AuthenticationService) { }
+  constructor(private route: Router, private _auth: AutenticazioneService) { }
 
-  onInputUserName(event: Event) {
-    this.userName = (<HTMLInputElement>event.target).value;
+  onInputNomeUtente(event: Event) {
+    this.nomeUtente = (<HTMLInputElement>event.target).value;
   }
 
   onInputPassword(event: Event) {
-    this.userPassword = (<HTMLInputElement>event.target).value;
+    this.password = (<HTMLInputElement>event.target).value;
   }
 
   showPassword() {
-    this.showedPassword = this.showedPassword.match('password') ? 'text' : 'password';
-    this.displayEye = this.displayEye.match('eyeFull') ? 'eyeLess' : 'eyeFull';
+    this.mostraPassword = this.mostraPassword.match('password') ? 'text' : 'password';
+    this.mostraOcchio = this.mostraOcchio.match('eyeFull') ? 'eyeLess' : 'eyeFull';
   }
 
   submitLogin() {
-    this._auth.login(this.correctInputsSpaces(this.userName),this.correctInputsSpaces(this.userPassword)).subscribe((res) => {
-      if (res.result) {
-        this._auth.saveResponse(res.id_user, res.name);
+    this._auth.login(this.correctInputsSpaces(this.nomeUtente),this.correctInputsSpaces(this.password)).subscribe((res) => {
+      if (res.risultato) {
+        this._auth.saveLoginData(res.id_utente, res.nome);
         this.backHome();
       }
       else {
-        alert(res.message);
+        alert(res.messaggio);
       };
     })
 

@@ -3,11 +3,11 @@ const dotEnv = require('dotenv');
 
 dotEnv.config({ path: __dirname + '/../.env' });
 
-function createConnection(userName, password) {
+function createConnection(nomeUtente, password) {
 
     const _db = mysql.createConnection({
         host: process.env.DB_HOST,
-        user: userName,
+        user: nomeUtente,
         password: password,
         database: process.env.DB_DATABASE,
         port: process.env.DB_PORT
@@ -17,7 +17,7 @@ function createConnection(userName, password) {
         if (error) {
             console.log(error);
         } else {
-            console.log('Database connected');
+            console.log('Database connesso');
         }
     });
 

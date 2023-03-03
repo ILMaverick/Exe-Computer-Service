@@ -9,13 +9,13 @@
         </p>
         <input
           type="text"
-          name = "userName"
-          #name="ngModel"
+          name = "nomeUtente"
+          #_nomeUtente="ngModel"
           maxlength="40"
           placeholder="Codice-Utente/Email/Telefono"
           class="rounded-full h-[30px] w-[250px] text-sm text-left mt-[5px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
-          (input)="onInputUserName($event)"
-          [(ngModel)]="userName"
+          (input)="onInputNomeUtente($event)"
+          [(ngModel)]="nomeUtente"
           required
         />
         <a
@@ -30,21 +30,21 @@
         </p>
         <div class="relative h-[30px] w-[250px] mt-[5px]">
           <input
-            [type]="showedPassword"
-            name = "userPassword"
-            #password="ngModel"
+            [type]="mostraPassword"
+            name = "password"
+            #_password="ngModel"
             minlength="8"
             placeholder="Minimo 8 caratteri"
             class="rounded-full h-[30px] w-[250px] text-sm text-left pl-[20px] pr-[40px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff] shrink-0  "
             (input)="onInputPassword($event)"
-            [(ngModel)]="userPassword"
+            [(ngModel)]="password"
             required
           />
           <button
             class="h-[20px] w-[20px]" type="button" (click)="showPassword()"
           >
             <img
-              [id] = "displayEye"
+              [id] = "mostraOcchio"
               class="absolute right-[10px] inset-y-[5px] h-[20px] w-[20px]"
               src="../../../../assets/occhio_password.svg"
               alt="occhio"
@@ -76,7 +76,7 @@
         oppure
       </p>
       <div class="mb-[20px]">
-        <button type="button" class="rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]"  routerLink="registration">
+        <button type="button" class="rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]" routerLink="registrazione">
           <p
             class="text-sm inset-0 font-light text-[#ffffff]"
           >

@@ -1,5 +1,5 @@
 <header
-  class="h-[90px] lg:h-[200px] w-full max-w-[1680px] px-[15px] mx-auto sm:max-lg:top-0 fixed inset-x-0 flex flex-col items-center"
+  class="h-[90px] lg:h-[200px] w-full max-w-[1680px] px-[15px] mx-auto fixed inset-x-0 flex flex-col items-center z-50"
 >
   <div
     class="sm:max-lg:hidden h-[15px] lg:h-[45px] w-full bg-white top-0 fixed z-10"
@@ -13,13 +13,13 @@
     class="sm:max-lg:hidden absolute bottom-[4px] rounded-t-[30px] h-[75%] w-[25%] max-w-[400px] outline-none lg:outline-[2px] lg:outline-offset-0 outline-[#005288ff] z-30"
   ></div>
   <div
-    class="absolute rounded-b-[5px] lg:-bottom-[20%] lg:rounded-[20px] h-full lg:h-[40%] w-full z-40 bg-white border-t-[4px] border-x-[4px] border-[#005288ff] shadow-md shadow-[#948e8e] flex justify-around"
+    class="absolute rounded-b-[5px] lg:-bottom-[20%] lg:rounded-[20px] h-full lg:h-[40%] w-full bg-white border-t-[4px] border-x-[4px] border-[#005288ff] shadow-md shadow-[#948e8e] flex justify-around z-40"
   >
     <button
       class="h-[50%] my-auto pl-[20px] flex-shrink-0"
       (click)="openOrHideSideMenu()"
     >
-      <img class="h-full" src="../../../assets/menu_icon.svg" alt="menu" />
+      <img class="h-full" src="../../../assets/menu_icona.svg" alt="menu" />
     </button>
     <button class="h-[50%] my-auto pl-[15px] flex-shrink-0">
       <img
@@ -34,7 +34,7 @@
         class="h-[50%] my-auto flex flex-row flex-shrink-0"
         (click)="openOrHideLoginMenu()"
       >
-        <img class="h-full mr-[15px]" [src]="signInIcon" alt="utente" />
+        <img class="h-full mr-[15px]" [src]="iconaLogin" alt="utente" />
         <p class="my-auto text-2xl text-[#005288ff]">
           {{ isLogged ? "Ciao, " + nomeUtente : "Accedi" }}!
         </p>
@@ -46,20 +46,20 @@
     routerLink="home"
   >
     <img
-      class="visible h-[80%] lg:h-[100%] lg:mx-auto"
+      class="h-[80%] lg:h-[100%] lg:mx-auto"
       src="../../../assets/logo_vettoriale.svg"
       alt="logo_exe"
     />
   </button>
   <div
-    class="absolute lg:top-[235px] lg:right-[20px] h-screen lg:h-fit sm:max-lg:inset-y-[70px] sm:max-lg:inset-x-0 lg:z-50 z-30"
+    class="absolute lg:top-[235px] lg:right-[20px] enabled:h-screen lg:h-fit sm:max-lg:inset-y-[70px] sm:max-lg:inset-x-0 lg:z-50"
   >
-    <app-login *ngIf="loginMenuDisplay && !isLogged"></app-login>
-    <app-user-menu *ngIf="loginMenuDisplay && isLogged"></app-user-menu>
+    <app-login *ngIf="mostraMenuLogin && !isLogged"></app-login>
+    <app-menu-utente *ngIf="mostraMenuLogin && isLogged"></app-menu-utente>
   </div>
   <div
-    class="absolute top-[65px] lg:top-[235px] lg:left-[20px] h-auto max-h-screen lg:h-fit sm:max-lg:inset-x-0 lg:z-50 z-30"
+    class="absolute lg:top-[235px] lg:left-[20px] enabled:h-screen lg:h-fit sm:max-lg:inset-x-0 lg:z-50"
   >
-    <app-menu *ngIf="sideMenuDisplay"></app-menu>
+    <app-menu-sito *ngIf="mostraMenuSito"></app-menu-sito>
   </div>
 </header>

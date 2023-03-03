@@ -1,0 +1,213 @@
+<form
+  [formGroup]="formRegistrazione"
+  (ngSubmit)="submitRegistration()"
+  class="h-screen w-full lg:pt-[240px] pt-[90px] -z-10 flex flex-col items-center"
+>
+  <div
+    class="h-auto w-full lg:border-[2px] bg-white border-x-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col items-center"
+  >
+    <div class="h-[200px] w-full flex items-center">
+      <div
+        class="rounded-[15px] h-[50px] w-[50%] mx-auto border-[2px] border-[#005288ff] flex items-center"
+      >
+        <p
+          class="font-black text-center text-2xl mx-auto text-[#005288ff] flex"
+        >
+          REGISTRAZIONE
+        </p>
+      </div>
+    </div>
+    <div class="h-auto w-[75%] flex flex-col items-center">
+      <div class="w-full flex flex-col lg:flex-row gap-x-[15px]">
+        <div class="lg:w-[20%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            Nome *
+          </p>
+          <input
+            type="text"
+            maxlength="40"
+            placeholder="Matteo, Simone, Gef..."
+            class="rounded-full h-[30px] w-full text-sm text-left mt-[10px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
+            formControlName="nome"
+          />
+        </div>
+        <div class="lg:w-[20%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            Cognome *
+          </p>
+          <input
+            type="text"
+            maxlength="40"
+            placeholder="cognome"
+            class="rounded-full h-[30px] w-full text-sm text-left mt-[10px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
+            formControlName="cognome"
+          />
+        </div>
+        <div class="lg:w-[20%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            Telefono *
+          </p>
+          <input
+            type="text"
+            placeholder="numero di telefono"
+            class="rounded-full h-[30px] w-full text-sm text-left mt-[10px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
+            formControlName="numero_tel"
+          />
+        </div>
+        <div class="lg:w-[40%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            Email *
+          </p>
+          <input
+            type="text"
+            maxlength="40"
+            placeholder="la tua email"
+            class="rounded-full h-[30px] w-full text-sm text-left mt-[10px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
+            formControlName="email"
+          />
+        </div>
+      </div>
+      <div class="w-full flex flex-col lg:flex-row gap-x-[15px]">
+        <div class="lg:w-[50%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            Indirizzo
+          </p>
+          <input
+            type="text"
+            placeholder="via"
+            class="rounded-full h-[30px] w-full text-sm text-left mt-[10px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
+            formControlName="indirizzo"
+          />
+        </div>
+        <div class="lg:w-[6%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            n.
+          </p>
+          <input
+            type="text"
+            maxlength="5"
+            placeholder="n."
+            class="rounded-full h-[30px] w-full text-sm text-left mt-[10px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
+            formControlName="numero_civico"
+          />
+        </div>
+        <div class="lg:w-[22%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            Citta'
+          </p>
+          <select
+            class="rounded-full h-[30px] w-full text-sm text-left mt-[10px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
+            formControlName="citta"
+          ></select>
+        </div>
+        <div class="lg:w-[22%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            Provincia
+          </p>
+          <select
+            class="rounded-full h-[30px] w-full text-sm text-left mt-[10px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
+            formControlName="provincia"
+          ></select>
+        </div>
+      </div>
+      <div class="w-full flex flex-col lg:flex-row gap-x-[15px]">
+        <div class="lg:w-[50%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            Password *
+          </p>
+          <div class="relative h-[30px] w-full mt-[5px] flex flex-row">
+            <input
+              [type]="mostraPassword"
+              placeholder="Minimo 8 caratteri"
+              class="rounded-full h-[30px] w-full text-sm text-left mt-[5px] pl-[20px] pr-[40px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff] flex-shrink-0"
+              formControlName="password"
+            />
+            <button
+              class="absolute h-[70%] right-[10px]"
+              type="button"
+              (click)="showPassword(1)"
+            >
+              <img
+                [id]="mostraOcchio"
+                class="h-full w-full mt-[10px]"
+                src="../../../../assets/occhio_password.svg"
+                alt="occhio"
+              />
+            </button>
+          </div>
+        </div>
+        <div class="h-[fit] mx-auto mt-[40px] flex items-center">
+          <img
+          *ngIf="(formRegistrazione.get('password')?.value !== formRegistrazione.get('confPassword')?.value) || (!formRegistrazione.get('password')?.valid || !formRegistrazione.get('confPassword')?.valid)"
+            class="h-[20px]"
+            src="../../../../assets/non_uguale.svg"
+            alt="non_uguale"
+          />
+          <img
+          *ngIf="!formRegistrazione.errors?.['passNotEqual'] && (formRegistrazione.get('password')?.valid && formRegistrazione.get('confPassword')?.valid)"
+            class="h-[20px]"
+            src="../../../../assets/uguale.svg"
+            alt="non_uguale"
+          />
+        </div>
+        <div class="lg:w-[50%] h-fit flex flex-col">
+          <p
+            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          >
+            Conferma password *
+          </p>
+          <div class="relative h-[30px] w-full mt-[5px] flex flex-row">
+            <input
+              id="confPassword"
+              [type]="mostraConfPassword"
+              placeholder="riscrivi la password"
+              class="rounded-full h-[30px] w-full text-sm text-left mt-[5px] pl-[20px] pr-[40px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff] flex-shrink-0"
+              formControlName="confPassword"
+            />
+            <button
+              class="absolute h-[70%] right-[10px]"
+              type="button"
+              (click)="showPassword(2)"
+            >
+              <img
+                [id]="mostraOcchioConferma"
+                class="h-full w-full mt-[10px]"
+                src="../../../../assets/occhio_password.svg"
+                alt="occhio"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-[200px] mb-[90px] flex items-center">
+      <button
+        class="rounded-[10px] h-[40px] w-[120px] mx-auto bg-[#005288ff] disabled:opacity-25 flex items-center"
+        type="submit"
+        [disabled]="!formRegistrazione.valid"
+      >
+        <p class="font-black text-center text-xl mx-auto text-[#ffffff]">
+          REGISTRATI
+        </p>
+      </button>
+    </div>
+  </div>
+</form>
