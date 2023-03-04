@@ -4,7 +4,6 @@ export class Utente {
     codice_utente: string = '';
     nome: string = '';
     cognome: string = '';
-    num_telefono: string = '';
+    numero_tel: string = '';
     email: string = '';
-    password: string = '';
 }

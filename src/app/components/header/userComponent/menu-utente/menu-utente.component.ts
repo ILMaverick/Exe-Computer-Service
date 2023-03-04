@@ -18,6 +18,6 @@ export class MenuUtenteComponent {
   }
 
   private backHome() {
-    this.route.navigate(['']).then(() => location.reload());
+    this.route.navigate(['home']).then(() => location.reload());
   }
 }

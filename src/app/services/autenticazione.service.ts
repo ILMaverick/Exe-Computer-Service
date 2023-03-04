@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 
 import { Utente } from '../models/utente';
 import { environment } from 'src/environments/environment.development';
-import { rispostaLogin } from '../models/rispostaLogin';
+import { Risposta } from '../models/risposta';
 import { Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,8 @@ export class AutenticazioneService {
 
   constructor(private _http: HttpClient) { };
 
-  login(utente: string, password: string): Observable<rispostaLogin> {
-    this._utente.userName = utente.toLowerCase();
-    this._utente.password = password;
-    return this._http.post<rispostaLogin>(environment.utentiUrl + '/login', this._utente);
+  login(form: FormGroup): Observable<Risposta> {
+    return this._http.post<Risposta>(environment.utentiUrl + '/login', form.value);
   };
 
   saveLoginData(_id_utente: number, nome: string): void {
@@ -35,10 +34,6 @@ export class AutenticazioneService {
 
   isLogged(): boolean {
     return localStorage.getItem('id_utente') != null || undefined ? true : false;
-  };
-
-  getName(): string {
-    return localStorage.getItem('nome')!;
   };
 
 }

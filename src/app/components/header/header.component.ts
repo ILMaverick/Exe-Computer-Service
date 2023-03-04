@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Utente } from 'src/app/models/utente';
 import { AutenticazioneService } from 'src/app/services/autenticazione.service';
+import { UtentiService } from 'src/app/services/utenti.service';
 
 @Component({
   selector: 'app-header',
@@ -14,12 +16,12 @@ export class HeaderComponent implements OnInit {
   mostraMenuLogin: boolean = false;
   mostraMenuSito: boolean = false;
 
-  constructor(private _auth: AutenticazioneService) { }
+  constructor(private _auth: AutenticazioneService, private _utente: UtentiService) { }
 
   ngOnInit(): void {
     if (this._auth.isLogged()) {
       this.isLogged = this._auth.isLogged();
-      this.nomeUtente = this._auth.getName();
+      this.nomeUtente = this._utente.getNameFromLocal();
     }
     this.iconaLogin = this.isLogged ? '../../../assets/utente.svg' : '../../../assets/login.svg';
   };

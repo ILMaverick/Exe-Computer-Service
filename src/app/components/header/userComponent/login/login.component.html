@@ -1,4 +1,4 @@
-<form #loginForm="ngForm" (ngSubmit)="submitLogin()">
+<form [formGroup]="formLogin" (ngSubmit)="submitLogin()">
   <div
     class="lg:rounded-[20px] lg:w-[300px] sm:max-lg:h-screen lg:border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col justify-center items-center"
   >
@@ -9,20 +9,10 @@
         </p>
         <input
           type="text"
-          name = "nomeUtente"
-          #_nomeUtente="ngModel"
-          maxlength="40"
           placeholder="Codice-Utente/Email/Telefono"
           class="rounded-full h-[30px] w-[250px] text-sm text-left mt-[5px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
-          (input)="onInputNomeUtente($event)"
-          [(ngModel)]="nomeUtente"
-          required
+          formControlName="userName"
         />
-        <a
-          class="ml-[50px] text-sm text-center w-auto text-[#005288ff] flex"
-          routerLink="recover/user_name"
-          >Username dimenticata?</a
-        >
       </div>
       <div class="mt-[10px] mx-auto w-fit h-fit">
         <p class="h-[15px] pl-[10px] mt-[5px] mb-[10px] text-xl text-left font-bold text-[#005288ff]">
@@ -31,14 +21,9 @@
         <div class="relative h-[30px] w-[250px] mt-[5px]">
           <input
             [type]="mostraPassword"
-            name = "password"
-            #_password="ngModel"
-            minlength="8"
             placeholder="Minimo 8 caratteri"
-            class="rounded-full h-[30px] w-[250px] text-sm text-left pl-[20px] pr-[40px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff] shrink-0  "
-            (input)="onInputPassword($event)"
-            [(ngModel)]="password"
-            required
+            class="rounded-full h-[30px] w-[250px] text-sm text-left pl-[20px] pr-[40px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff] shrink-0"
+            formControlName="password"
           />
           <button
             class="h-[20px] w-[20px]" type="button" (click)="showPassword()"
@@ -53,7 +38,7 @@
         </div>
         <a
           class="ml-[50px] mt-[5px] text-sm text-center text-[#005288ff]"
-          routerLink="recover/password"
+          routerLink="recupero"
           >Password dimenticata?</a
         >
       </div>
@@ -61,7 +46,7 @@
         <button
           class="rounded-full h-[40px] w-[80px] bg-[#005288ff] disabled:opacity-25"
           type="submit"
-          [disabled]="!loginForm.valid"
+          [disabled]="!formLogin.valid"
         >
           <p
             class="text-lg inset-0 font-medium text-[#ffffff]"
@@ -76,7 +61,7 @@
         oppure
       </p>
       <div class="mb-[20px]">
-        <button type="button" class="rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]" routerLink="registrazione">
+        <button type="button" class="rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]" routerLink="/registrazione">
           <p
             class="text-sm inset-0 font-light text-[#ffffff]"
           >

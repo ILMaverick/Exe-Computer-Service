@@ -7,13 +7,11 @@ dotEnv.config({ path: __dirname + '/.env' });
 
 const app = express();
 
-app.use(express.json())
 app.use(cors());
 
-app.use('/utenti', utentiRouter);
+app.use('/users', utentiRouter);
 // app.use('/interventions', interventionsRouter);
 // app.use('/hardware', hardwareRouter);
-// app.use('/comm', commRouter);
 // app.use('/tech', techRouter);
 
 app.listen(process.env.SERVER_PORT, () =>

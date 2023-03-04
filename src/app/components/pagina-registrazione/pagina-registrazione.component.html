@@ -128,11 +128,20 @@
       </div>
       <div class="w-full flex flex-col lg:flex-row gap-x-[15px]">
         <div class="lg:w-[50%] h-fit flex flex-col">
-          <p
-            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          <div
+            class="h-fit flex flex-row flex-wrap items-center mb-0 mt-[10px]"
           >
-            Password *
-          </p>
+            <p
+              class="h-[15px] w-fit pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+            >
+              Password *
+            </p>
+            <p
+              class="lg:h-[15px] h-fit w-fit pt-[5px] pl-[10px] text-sm text-left font-light text-[#9da0a1]"
+            >
+              (almeno un numero, una lettera e un simbolo tra: @$!%*#?&)
+            </p>
+          </div>
           <div class="relative h-[30px] w-full mt-[5px] flex flex-row">
             <input
               [type]="mostraPassword"
@@ -156,24 +165,35 @@
         </div>
         <div class="h-[fit] mx-auto mt-[40px] flex items-center">
           <img
-          *ngIf="(formRegistrazione.get('password')?.value !== formRegistrazione.get('confPassword')?.value) || (!formRegistrazione.get('password')?.valid || !formRegistrazione.get('confPassword')?.valid)"
+            *ngIf="
+              formRegistrazione.get('password')?.value !==
+              formRegistrazione.get('confPassword')?.value
+            "
             class="h-[20px]"
             src="../../../../assets/non_uguale.svg"
             alt="non_uguale"
           />
           <img
-          *ngIf="!formRegistrazione.errors?.['passNotEqual'] && (formRegistrazione.get('password')?.valid && formRegistrazione.get('confPassword')?.valid)"
+            *ngIf="
+              formRegistrazione.get('password')?.value ===
+              formRegistrazione.get('confPassword')?.value
+            "
             class="h-[20px]"
             src="../../../../assets/uguale.svg"
             alt="non_uguale"
           />
         </div>
         <div class="lg:w-[50%] h-fit flex flex-col">
-          <p
-            class="h-[15px] mt-[10px] pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+          <div
+            class="h-fit flex flex-row flex-wrap items-center mb-0 mt-[10px]"
           >
-            Conferma password *
-          </p>
+            <p
+              class="h-[15px] w-fit pl-[10px] text-xl text-left font-bold text-[#005288ff]"
+            >
+              Conferma Password *
+            </p>
+            <p class="invisible sm:max-lg:hidden h-[15px] w-[284px]"></p>
+          </div>
           <div class="relative h-[30px] w-full mt-[5px] flex flex-row">
             <input
               id="confPassword"
@@ -198,16 +218,30 @@
         </div>
       </div>
     </div>
-    <div class="h-[200px] mb-[90px] flex items-center">
+    <div class="h-[120px] flex items-center">
       <button
-        class="rounded-[10px] h-[40px] w-[120px] mx-auto bg-[#005288ff] disabled:opacity-25 flex items-center"
+        class="rounded-[10px] h-[40px] w-fit mx-auto bg-[#005288ff] enabled:bg-[#307c36] disabled:opacity-25 flex"
         type="submit"
         [disabled]="!formRegistrazione.valid"
       >
-        <p class="font-black text-center text-xl mx-auto text-[#ffffff]">
+        <p class="font-black text-center text-xl my-auto mx-[30px] text-[#ffffff] flex">
           REGISTRATI
         </p>
       </button>
+    </div>
+    <div
+      class="rounded-full bg-[#005288ff] h-[2px] w-[90%] flex"
+    ></div>
+    <div class="mt-[30px] mb-[110px] h-[30px] w-fit flex flex-row items-center">
+      <p class="font-medium h-fit w-fit text-center text-md text-[#0964a0] flex">Problemi con la registrazione?</p>
+      <button
+        class="rounded-[6px] h-[30px] w-fit mx-[10px] bg-[#0964a0] flex" routerLink="/recupero"
+      >
+        <p class="font-medium text-center text-md my-auto mx-[10px] text-[#ffffff] flex">
+          RECUPERA
+        </p>
+      </button>
+      <p class="font-medium h-fit w-fit text-center text-md text-[#0964a0] flex">le tue credenziali</p>
     </div>
   </div>
 </form>

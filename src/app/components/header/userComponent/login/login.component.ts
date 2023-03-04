@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticazioneService } from 'src/app/services/autenticazione.service';
 
@@ -9,21 +10,18 @@ import { AutenticazioneService } from 'src/app/services/autenticazione.service';
 })
 export class LoginComponent {
 
-  public nomeUtente: string = '';
-  public password: string = '';
+
+  constructor(private _route: Router, private _auth: AutenticazioneService, private _formBuild: FormBuilder) { }
+  
+
+  formLogin = this._formBuild.group({
+    userName: ['', [Validators.required, Validators.maxLength(40)]],
+    password: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(100)]],
+  }
+  );
 
   mostraPassword: string = 'password';
   mostraOcchio: string = 'eyeFull';
-
-  constructor(private route: Router, private _auth: AutenticazioneService) { }
-
-  onInputNomeUtente(event: Event) {
-    this.nomeUtente = (<HTMLInputElement>event.target).value;
-  }
-
-  onInputPassword(event: Event) {
-    this.password = (<HTMLInputElement>event.target).value;
-  }
 
   showPassword() {
     this.mostraPassword = this.mostraPassword.match('password') ? 'text' : 'password';
@@ -31,7 +29,8 @@ export class LoginComponent {
   }
 
   submitLogin() {
-    this._auth.login(this.correctInputsSpaces(this.nomeUtente),this.correctInputsSpaces(this.password)).subscribe((res) => {
+    this.fixInputsForm();
+    this._auth.login(this.formLogin).subscribe((res) => {
       if (res.risultato) {
         this._auth.saveLoginData(res.id_utente, res.nome);
         this.backHome();
@@ -43,12 +42,14 @@ export class LoginComponent {
 
   }
 
-  correctInputsSpaces(string: string): string{
-    return string.replace(/\s/g,"");
+  fixInputsForm(){
+    this.formLogin.value.userName = this.formLogin.value.userName!.trim();
+    this.formLogin.value.userName = this.formLogin.value.userName!.toUpperCase();
+    this.formLogin.value.password = this.formLogin.value.password!.trim();
   }
 
   public backHome() {
-    this.route.navigate(['home']).then(() => window.location.reload());
+    this._route.navigate(['home']).then(() => window.location.reload());
   }
 
 }

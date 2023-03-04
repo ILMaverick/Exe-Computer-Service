@@ -21,7 +21,9 @@ import { MenuSitoComponent } from './components/header/menu-sito/menu-sito.compo
 import { PaginaNonTrovataComponent } from './components/pagina-non-trovata/pagina-non-trovata.component';
 import { AutenticazioneService } from './services/autenticazione.service';
 import { FooterComponent } from './components/footer/footer.component';
-import { ConfrontaPasswordValidator } from './components/pagina-registrazione/pagina-registrazione/confronta-password-validator.directive';
+import { ConfrontaPasswordValidator } from './components/pagina-registrazione/confronta-password/confronta-password-validator.directive';
+import { PaginaRecuperoCredenzialiComponent } from './components/pagina-recupero-credenziali/pagina-recupero-credenziali.component';
+import { PaginaRegistrazioneEffettuataComponent } from './components/pagina-registrazione/pagina-registrazione-effettuata/pagina-registrazione-effettuata.component';
 
 
 
@@ -38,7 +40,9 @@ import { ConfrontaPasswordValidator } from './components/pagina-registrazione/pa
     MenuUtenteComponent,
     PaginaNonTrovataComponent,
     FooterComponent,
-    ConfrontaPasswordValidator
+    ConfrontaPasswordValidator,
+    PaginaRecuperoCredenzialiComponent,
+    PaginaRegistrazioneEffettuataComponent
   ],
   imports: [
     BrowserModule,
