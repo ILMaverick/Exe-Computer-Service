@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UtenteVerificatoGuard } from './utente-verificato.guard';
+import { TechAutorizzatoGuard } from './tech-autorizzato.guard';
 
-describe('UtenteVerificatoGuard', () => {
-  let guard: UtenteVerificatoGuard;
+describe('TechAutorizzatoGuard', () => {
+  let guard: TechAutorizzatoGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(UtenteVerificatoGuard);
+    guard = TestBed.inject(TechAutorizzatoGuard);
   });
 
   it('should be created', () => {

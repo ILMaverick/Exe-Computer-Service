@@ -41,6 +41,9 @@ export class AutenticazioneService {
   getExpiration(): moment.MomentInput {
     return moment(localStorage.getItem('scadenza'));
   }
-  ;
+  
+  getRole(): string {
+    return localStorage.getItem('ruolo')!;
+  }
 
 }

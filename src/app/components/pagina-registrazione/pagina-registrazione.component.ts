@@ -85,7 +85,7 @@ export class PaginaRegistrazioneComponent implements OnInit{
   }
 
   public routeTo(link: string) {
-    this._route.navigate([link]).then(() => window.location.reload());
+    this._route.createUrlTree([link]);
   }
 
 }

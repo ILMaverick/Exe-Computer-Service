@@ -26,6 +26,6 @@ export class MenuUtenteComponent implements OnInit{
 
 
   private backHome() {
-    this.route.navigate(['home']).then(() => location.reload());
+    this.route.createUrlTree(['home']);
   }
 }

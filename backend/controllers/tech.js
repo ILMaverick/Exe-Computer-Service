@@ -5,7 +5,7 @@ const dotEnv = require('dotenv');
 const path = require('path');
 const fs = require('fs');
 
-dotEnv.config({ path: '../backend/.env' });
+dotEnv.config({ path: __dirname + '/../.env' });
 
 const db_utenti = process.env.DB_USER;
 const db_password = process.env.DB_USER_PASSWORD;

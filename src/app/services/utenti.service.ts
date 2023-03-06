@@ -13,30 +13,22 @@ export class UtentiService {
   constructor(private _http: HttpClient) {
   }
 
-  url: string = environment.utentiUrl;
+  utentiUrl: string = environment.utentiUrl;
 
   getUserCodeById(id: number): Observable<Risposta> {
-    return this._http.get<Risposta>(this.url + '/usercode/:' + id.toString());
+    return this._http.get<Risposta>(this.utentiUrl + '/usercode/:' + id.toString());
   }
 
   getUserByUserName(userName: string): Observable<Risposta> {
-    return this._http.post<Risposta>(this.url + '/byusername', userName);
+    return this._http.post<Risposta>(this.utentiUrl + '/byusername', userName);
   }
 
-  getUserIdByUserCode(userCode: string): Observable<Risposta> {
-    return this._http.post<Risposta>(this.url + '/userID/username', { userCode: userCode })
-  }
-
-  setUserCodeAtRegistration(id: number): Observable<Risposta> {
-    return this._http.get<Risposta>(this.url + '/usercode/:' + id.toString());
+  getUserIdByUserName(userName: string): Observable<Risposta> {
+    return this._http.post<Risposta>(this.utentiUrl + '/userID/username', { userName: userName })
   }
 
   checkUser(userName: string): Observable<Risposta> {
-    return this._http.post<Risposta>(this.url + '/check', { userName: userName })
-  }
-
-  getUsers(): Observable<Risposta[]> {
-    return this._http.get<Risposta[]>(this.url + '/');
+    return this._http.post<Risposta>(this.utentiUrl + '/check', { userName: userName })
   }
 
   getUserIdFromLocal(){

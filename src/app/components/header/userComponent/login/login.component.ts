@@ -58,7 +58,7 @@ export class LoginComponent {
   }
 
   public routeTo(link: string) {
-    this._route.navigate([link]).then(() => location.reload());
+    this._route.createUrlTree([link]);
   }
 
 }
