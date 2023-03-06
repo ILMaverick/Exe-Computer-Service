@@ -18,7 +18,7 @@ const register = (req, res) => {
                 messaggio: err.message
             });
         } else if (result.length != 0) {
-            const bearerToken = jwt.sign({}, fs.readFileSync(path.resolve('/backend/controllers/private.key'), 'utf8'), {
+            const bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private.key'), 'utf8'), {
                 algorithm: 'RS256',
                 expiresIn: 300
             });

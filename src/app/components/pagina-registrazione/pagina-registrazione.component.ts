@@ -27,16 +27,16 @@ export class PaginaRegistrazioneComponent implements OnInit{
   regexPass = '^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[@$!%*#?&])[A-Za-z0-9@$!%*#?&]{1,}$';
 
   formRegistrazione = this._formBuild.group({
-    nome: ['Giulia', [Validators.required, Validators.maxLength(40), Validators.pattern(this.regexNome)]],
-    cognome: ['Fabiani', [Validators.required, Validators.maxLength(40), Validators.pattern(this.regexNome)]],
+    nome: ['', [Validators.required, Validators.maxLength(40), Validators.pattern(this.regexNome)]],
+    cognome: ['', [Validators.required, Validators.maxLength(40), Validators.pattern(this.regexNome)]],
     indirizzo: ['', Validators.maxLength(40)],
     numero_civico: ['', Validators.maxLength(5)],
     citta: ['', Validators.maxLength(20)],
     provincia: ['', Validators.maxLength(2)],
-    email: ['giuliafabiani@gmail.com', [Validators.required, Validators.maxLength(40), Validators.pattern(this.regexEmail)]],
-    numero_tel: ['3918395949', [Validators.required, Validators.minLength(9), Validators.maxLength(20), Validators.pattern(this.regexTel)]],
-    password: ['Prova123!', [Validators.required, Validators.minLength(8), Validators.maxLength(100), Validators.pattern(this.regexPass)]],
-    confPassword: ['Prova123!', [Validators.required, Validators.minLength(8), Validators.maxLength(100), Validators.pattern(this.regexPass)]]
+    email: ['', [Validators.required, Validators.maxLength(40), Validators.pattern(this.regexEmail)]],
+    numero_tel: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(20), Validators.pattern(this.regexTel)]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100), Validators.pattern(this.regexPass)]],
+    confPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100), Validators.pattern(this.regexPass)]]
   }, {
     validators: [ConfrontaPasswordValidator.passNotEqual]
   }

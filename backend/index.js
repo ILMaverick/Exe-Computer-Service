@@ -10,7 +10,7 @@ dotEnv.config({ path: __dirname + '/.env' });
 const app = express();
 
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
 app.post('/login', login);
 app.post('/register', register);

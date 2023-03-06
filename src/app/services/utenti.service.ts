@@ -39,6 +39,10 @@ export class UtentiService {
     return this._http.get<Risposta[]>(this.url + '/');
   }
 
+  getUserIdFromLocal(){
+    return localStorage.getItem('id_utente')!;
+  }
+
   getNameFromLocal(): string {
     return localStorage.getItem('nome')!;
   };
