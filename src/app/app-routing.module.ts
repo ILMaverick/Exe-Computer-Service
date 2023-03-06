@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home', component: PaginaPrincipaleComponent },
   { path: 'registrazione', component: PaginaRegistrazioneComponent },
   { path: 'recupero', component: PaginaRecuperoCredenzialiComponent },
-  { path: 'utenti/:id', canActivate: [() => inject(UtenteAutorizzatoGuard).canActivate()], component: PaginaProfiloComponent },
+  { path: 'utenti/:id', canActivate: [], component: PaginaProfiloComponent },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: '404', component: PaginaNonTrovataComponent },
   { path: '**', pathMatch: 'full', redirectTo: '404' }
