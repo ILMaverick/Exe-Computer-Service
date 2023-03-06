@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 24, 2023 alle 20:09
+-- Creato il: Mar 06, 2023 alle 14:22
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -24,136 +24,117 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `aggiornamenti`
+--
+
+CREATE TABLE `aggiornamenti` (
+  `id_aggiornamento` int(11) NOT NULL,
+  `id_interv_fk` int(11) NOT NULL,
+  `id_tech_fk` int(11) NOT NULL,
+  `descrizione` text NOT NULL,
+  `data_creazione` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `harware`
 --
 
 CREATE TABLE `harware` (
   `id_hardware` int(11) NOT NULL,
-  `id_user_fk` int(11) NOT NULL,
-  `code_hardware` varchar(30) NOT NULL,
-  `typology` set('personal_computer','laptop','smartphone','console','monitor','other') NOT NULL DEFAULT 'other',
-  `model` varchar(20) DEFAULT NULL
+  `id_utente_fk` int(11) NOT NULL,
+  `codice_hardware` varchar(30) NOT NULL,
+  `tipologia` set('personal_computer','laptop','smartphone','console','monitor','altro') NOT NULL DEFAULT 'altro',
+  `modello` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `interventions`
+-- Struttura della tabella `interventi`
 --
 
-CREATE TABLE `interventions` (
-  `id_intervent` int(11) NOT NULL,
-  `id_user_fk` int(11) NOT NULL,
+CREATE TABLE `interventi` (
+  `id_intervento` int(11) NOT NULL,
+  `id_utente_fk` int(11) NOT NULL,
   `id_tech_fk` int(11) NOT NULL,
-  `code_intervent` varchar(20) NOT NULL,
+  `codice_intervento` varchar(10) NOT NULL,
   `id_hardware_fk` int(11) NOT NULL,
-  `creat_date` datetime NOT NULL,
-  `update_date` datetime NOT NULL,
-  `finish_date` datetime NOT NULL,
-  `state_intervent` enum('in_queue','pending','processing','finished','withdraw','closed') NOT NULL
+  `data_creazione` datetime NOT NULL,
+  `data_aggiornamento` datetime NOT NULL,
+  `data_chiusura` datetime NOT NULL,
+  `stato_intervento` enum('in_coda','attesa_risposta','in_lavorazione','ultimato','ritirato','chiuso') NOT NULL DEFAULT 'in_coda'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `status_description`
+-- Struttura della tabella `utenti`
 --
 
-CREATE TABLE `status_description` (
-  `id_descr_status` int(11) NOT NULL,
-  `id_interv_fk` int(11) NOT NULL,
-  `id_tech_fk` int(11) NOT NULL,
-  `text_descr` text NOT NULL,
-  `create_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `techs`
---
-
-CREATE TABLE `techs` (
-  `id_tech` int(11) NOT NULL,
-  `code_tech` varchar(10) NOT NULL,
-  `name` int(11) NOT NULL,
-  `surname` varchar(20) NOT NULL,
-  `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `users`
---
-
-CREATE TABLE `users` (
-  `id_user` int(11) NOT NULL,
-  `user_code` varchar(10) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL,
-  `tel_number` varchar(20) NOT NULL,
+CREATE TABLE `utenti` (
+  `id_utente` int(8) NOT NULL,
+  `nome` varchar(40) NOT NULL,
+  `cognome` varchar(40) NOT NULL,
+  `numero_tel` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `date_signUp` datetime NOT NULL DEFAULT current_timestamp()
+  `indirizzo` varchar(40) DEFAULT NULL,
+  `numero_civico` int(5) DEFAULT NULL,
+  `citta` varchar(20) DEFAULT NULL,
+  `provincia` varchar(2) DEFAULT NULL,
+  `ruolo` set('standard','tecnico','commerciale','') NOT NULL DEFAULT 'standard',
+  `data_iscrizione` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dump dei dati per la tabella `users`
---
-
-INSERT INTO `users` (`id_user`, `user_code`, `name`, `lastname`, `tel_number`, `email`, `password`, `date_signUp`) VALUES
-(1, 'UC00000001', 'Giulia', 'Fabiani', '+391234567890', 'giuliafabiani@gmail.com', 'Prova123!', '2023-02-23 22:29:13');
 
 --
 -- Indici per le tabelle scaricate
 --
 
 --
+-- Indici per le tabelle `aggiornamenti`
+--
+ALTER TABLE `aggiornamenti`
+  ADD PRIMARY KEY (`id_aggiornamento`),
+  ADD KEY `id_interv_fk` (`id_interv_fk`) USING BTREE,
+  ADD KEY `id_tech_fk` (`id_tech_fk`);
+
+--
 -- Indici per le tabelle `harware`
 --
 ALTER TABLE `harware`
   ADD PRIMARY KEY (`id_hardware`),
-  ADD UNIQUE KEY `code_hardware` (`code_hardware`),
-  ADD KEY `harware_ibfk_1` (`id_user_fk`);
+  ADD UNIQUE KEY `codice_hardware` (`codice_hardware`) USING BTREE,
+  ADD KEY `id_utente_fk` (`id_utente_fk`) USING BTREE;
 
 --
--- Indici per le tabelle `interventions`
+-- Indici per le tabelle `interventi`
 --
-ALTER TABLE `interventions`
-  ADD PRIMARY KEY (`id_intervent`),
-  ADD UNIQUE KEY `code_intervent` (`code_intervent`),
-  ADD KEY `interventions_ibfk_1` (`id_user_fk`),
-  ADD KEY `interventions_ibfk_3` (`id_hardware_fk`),
+ALTER TABLE `interventi`
+  ADD PRIMARY KEY (`id_intervento`),
+  ADD UNIQUE KEY `codice_intervento` (`codice_intervento`) USING BTREE,
+  ADD KEY `id_utente_fk` (`id_utente_fk`) USING BTREE,
+  ADD KEY `id_hardware_fk` (`id_hardware_fk`) USING BTREE,
   ADD KEY `id_tech_fk` (`id_tech_fk`);
 
 --
--- Indici per le tabelle `status_description`
+-- Indici per le tabelle `utenti`
 --
-ALTER TABLE `status_description`
-  ADD PRIMARY KEY (`id_descr_status`),
-  ADD KEY `status_description_ibfk_2` (`id_interv_fk`),
-  ADD KEY `id_tech_fk` (`id_tech_fk`);
-
---
--- Indici per le tabelle `techs`
---
-ALTER TABLE `techs`
-  ADD PRIMARY KEY (`id_tech`),
-  ADD UNIQUE KEY `code_tech` (`code_tech`);
-
---
--- Indici per le tabelle `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `userCode` (`user_code`),
+ALTER TABLE `utenti`
+  ADD PRIMARY KEY (`id_utente`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `telNumber` (`tel_number`);
+  ADD UNIQUE KEY `numero_tel` (`numero_tel`) USING BTREE;
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
 --
+
+--
+-- AUTO_INCREMENT per la tabella `aggiornamenti`
+--
+ALTER TABLE `aggiornamenti`
+  MODIFY `id_aggiornamento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `harware`
@@ -162,53 +143,41 @@ ALTER TABLE `harware`
   MODIFY `id_hardware` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `interventions`
+-- AUTO_INCREMENT per la tabella `interventi`
 --
-ALTER TABLE `interventions`
-  MODIFY `id_intervent` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `interventi`
+  MODIFY `id_intervento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `status_description`
+-- AUTO_INCREMENT per la tabella `utenti`
 --
-ALTER TABLE `status_description`
-  MODIFY `id_descr_status` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `techs`
---
-ALTER TABLE `techs`
-  MODIFY `id_tech` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `users`
---
-ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `utenti`
+  MODIFY `id_utente` int(8) NOT NULL AUTO_INCREMENT;
 
 --
 -- Limiti per le tabelle scaricate
 --
 
 --
+-- Limiti per la tabella `aggiornamenti`
+--
+ALTER TABLE `aggiornamenti`
+  ADD CONSTRAINT `aggiornamenti_ibfk_2` FOREIGN KEY (`id_interv_fk`) REFERENCES `interventi` (`id_intervento`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `aggiornamenti_ibfk_3` FOREIGN KEY (`id_tech_fk`) REFERENCES `utenti` (`id_utente`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
 -- Limiti per la tabella `harware`
 --
 ALTER TABLE `harware`
-  ADD CONSTRAINT `harware_ibfk_1` FOREIGN KEY (`id_user_fk`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `harware_ibfk_1` FOREIGN KEY (`id_utente_fk`) REFERENCES `utenti` (`id_utente`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `interventions`
+-- Limiti per la tabella `interventi`
 --
-ALTER TABLE `interventions`
-  ADD CONSTRAINT `interventions_ibfk_1` FOREIGN KEY (`id_user_fk`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `interventions_ibfk_3` FOREIGN KEY (`id_hardware_fk`) REFERENCES `harware` (`id_hardware`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `interventions_ibfk_4` FOREIGN KEY (`id_tech_fk`) REFERENCES `techs` (`id_tech`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Limiti per la tabella `status_description`
---
-ALTER TABLE `status_description`
-  ADD CONSTRAINT `status_description_ibfk_2` FOREIGN KEY (`id_interv_fk`) REFERENCES `interventions` (`id_intervent`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `status_description_ibfk_3` FOREIGN KEY (`id_tech_fk`) REFERENCES `techs` (`id_tech`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `interventi`
+  ADD CONSTRAINT `interventi_ibfk_1` FOREIGN KEY (`id_utente_fk`) REFERENCES `utenti` (`id_utente`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `interventi_ibfk_3` FOREIGN KEY (`id_hardware_fk`) REFERENCES `harware` (`id_hardware`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `interventi_ibfk_4` FOREIGN KEY (`id_tech_fk`) REFERENCES `utenti` (`id_utente`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

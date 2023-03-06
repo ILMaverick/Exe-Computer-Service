@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -23,7 +23,8 @@ import { AutenticazioneService } from './services/autenticazione.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { ConfrontaPasswordValidator } from './components/pagina-registrazione/confronta-password/confronta-password-validator.directive';
 import { PaginaRecuperoCredenzialiComponent } from './components/pagina-recupero-credenziali/pagina-recupero-credenziali.component';
-import { PaginaRegistrazioneEffettuataComponent } from './components/pagina-registrazione/pagina-registrazione-effettuata/pagina-registrazione-effettuata.component';
+import { ValidazioneService } from './services/interceptors/validazione.service';
+import { PaginaProfiloComponent } from './components/pagina-profilo/pagina-profilo.component';
 
 
 
@@ -42,7 +43,7 @@ import { PaginaRegistrazioneEffettuataComponent } from './components/pagina-regi
     FooterComponent,
     ConfrontaPasswordValidator,
     PaginaRecuperoCredenzialiComponent,
-    PaginaRegistrazioneEffettuataComponent
+    PaginaProfiloComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +61,7 @@ import { PaginaRegistrazioneEffettuataComponent } from './components/pagina-regi
       registrationStrategy: 'registerImmediately'
     })
   ],
-  providers: [AutenticazioneService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: ValidazioneService, multi: true}, AutenticazioneService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
