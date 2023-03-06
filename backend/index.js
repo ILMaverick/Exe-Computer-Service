@@ -15,7 +15,7 @@ app.use(express.json())
 app.post('/login', login);
 app.post('/register', register);
 app.use('/users', utentiRouter);
-// app.use('/interventions', interventionsRouter);
+// app.use('/interventions', interventiRouter);
 // app.use('/hardware', hardwareRouter);
 // app.use('/tech', techRouter);
 

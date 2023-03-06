@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const db = require('./dbService');
+const db = require('./../database/dbService.js');
 const dotEnv = require('dotenv');
 const path = require('path');
 const fs = require('fs');
