@@ -1,99 +1,48 @@
 <div
-  class="lg:rounded-[20px] lg:w-[300px] sm:max-lg:h-screen sm:max-lg:w-[50%] sm:max-lg:mr-0 sm:max-lg:ml-auto lg:border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col justify-center items-center"
+  class="lg:rounded-[20px] lg:w-[300px] sm:max-lg:h-screen sm:max-lg:w-[50%] sm:max-lg:ml-auto py-[20px] lg:border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col justify-center items-center"
 >
-  <div class="">
+    <div
+      class="rounded-[5px] h-[30px] mx-[auto] w-fit border-[2px] border-[#005288ff] flex items-center"
+    >
+      <p class="font-black text-center text-xl mx-[10px] text-[#005288ff] flex">
+        Il mio Menu
+      </p>
+    </div>
+    <div
+      class="rounded-full bg-[#005288ff] h-[2px] w-[80%] mx-auto my-[10px] flex"
+    ></div>
+    <ul class=" lg:mx-[40px] lg:py-[20px] h-fit list-disc lg:space-y-[10px] space-y-[30px]">
+      <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
+        <button class="h-[20px]" routerLink="prodotti">
+          Profilo
+        </button>
+      </li>
+      <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
+        <button class="h-[20px]" routerLink="servizi">
+          Interventi
+        </button>
+      </li>
+      <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
+        <button class="h-[20px] w-fit" routerLink="assistenza">
+          I miei Tickets
+        </button>
+      </li>
+      <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
+        <button class="h-[20px]" routerLink="contatti">
+          Assistenza
+        </button>
+      </li>
+    </ul>
+    <div
+      class="rounded-full bg-[#005288ff] h-[2px] w-[90%] mx-auto my-[10px] flex"
+    ></div>
     <button
       type="button"
-      class="rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]" (click)="logout()"
+      class="rounded-[5px] mx-auto h-[40px] w-[80px] bg-[#005288ff] flex items-center"
+      (click)="logout()"
     >
-      <p class="text-sm inset-0 font-light text-[#ffffff]">LOGOUT</p>
-    </button>
-  </div>
-</div>
-<!-- <div
-    class="lg:rounded-[20px] lg:w-[300px] h-full lg:border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col sm:max-lg:flex-row items-center"
-  >
-    <div class="h-fil w-fit sm:max-lg:w-full sm:max-lg:mb-[15%] flex flex-col items-center">
-      <div class="lg:mt-[15px] mx-auto w-fit h-fit">
-        <p class="h-[15px] my-[5px] pl-[10px] text-xl text-left font-bold text-[#005288ff]">
-          Utente
-        </p>
-        <input
-          type="text"
-          name = "userName"
-          #name="ngModel"
-          maxlength="40"
-          placeholder="Codice-Utente/Email/Telefono"
-          class="rounded-full h-[30px] w-[250px] text-sm text-left mt-[5px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
-          (input)="onInputUserName($event)"
-          (ngModel)="userName"
-          required
-        />
-        <a
-          class="ml-[50px] text-sm text-center w-auto text-[#005288ff] flex"
-          routerLink="recover/user_name"
-          >Username dimenticata?</a
-        >
-      </div>
-      <div class="mt-[10px] mx-auto w-fit h-fit">
-        <p class="h-[15px] pl-[10px] mt-[5px] mb-[10px] text-xl text-left font-bold text-[#005288ff]">
-          Password
-        </p>
-        <div class="relative h-[30px] w-[250px] mt-[5px]">
-          <input
-            [type]="showedPassword"
-            name = "userPassword"
-            #password="ngModel"
-            minlength="8"
-            placeholder="Minimo 8 caratteri"
-            class="rounded-full h-[30px] w-[250px] text-sm text-left pl-[20px] pr-[40px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff] shrink-0  "
-            (input)="onInputPassword($event)"
-            (ngModel)="userPassword"
-            required
-          />
-          <button
-            class="h-[20px] w-[20px]" type="button" (click)="showPassword()"
-          >
-            <img
-              [id] = "eyeDisplay"
-              class="absolute right-[10px] inset-y-[5px] h-[20px] w-[20px]"
-              src="../../../../assets/occhio_password.svg"
-              alt="occhio"
-            />
-          </button>
-        </div>
-        <a
-          class="ml-[50px] mt-[5px] text-sm text-center text-[#005288ff]"
-          routerLink="recover/password"
-          >Password dimenticata?</a
-        >
-      </div>
-      <div class="mt-[10px] h-fit w-fit">
-        <button
-          class="rounded-full h-[40px] w-[80px] bg-[#005288ff] disabled:opacity-25"
-          type="submit"
-          [disabled]="!loginForm.valid"
-        >
-          <p
-            class="text-lg inset-0 font-medium text-[#ffffff]"
-          >
-            LOGIN
-          </p>
-        </button>
-      </div>
-      <p
-        class="mx-auto py-[5px] h-fit text-xs text-center text-[#005288ff] flex"
-      >
-        oppure
+      <p class="text-base text-center mx-auto font-normal text-[#ffffff] flex">
+        LOGOUT
       </p>
-      <div class="mb-[20px]">
-        <button type="button" class="relative rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]"  routerLink="registration">
-          <p
-            class="text-sm inset-0 font-light text-[#ffffff]"
-          >
-            REGISTRATI
-          </p>
-        </button>
-      </div>
-    </div>
-  </div> -->
+    </button>
+</div>

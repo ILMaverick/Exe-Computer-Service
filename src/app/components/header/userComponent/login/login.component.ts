@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticazioneService } from 'src/app/services/autenticazione.service';
@@ -13,12 +13,17 @@ export class LoginComponent {
 
   constructor(private _route: Router, private _auth: AutenticazioneService, private _formBuild: FormBuilder) { }
   
+  @Output() hideLoginEvent = new EventEmitter();
 
   formLogin = this._formBuild.group({
     userName: ['', [Validators.required, Validators.maxLength(40)]],
     password: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(100)]],
   }
   );
+
+  hideLogin(){
+    this.hideLoginEvent.emit();
+  }
 
   mostraPassword: string = 'password';
   mostraOcchio: string = 'eyeFull';
@@ -32,8 +37,8 @@ export class LoginComponent {
     this.fixInputsForm();
     this._auth.login(this.formLogin).subscribe((res) => {
       if (res.risultato) {
-        this._auth.saveLoginData(res.id_utente, res.nome);
-        this.backHome();
+        this._auth.saveLoginData(res);
+        this.routeTo('home');
       }
       else {
         alert(res.messaggio);
@@ -42,14 +47,18 @@ export class LoginComponent {
 
   }
 
+  goRegistrationPage(){
+    this.routeTo('registrazione');
+  }
+
   fixInputsForm(){
     this.formLogin.value.userName = this.formLogin.value.userName!.trim();
     this.formLogin.value.userName = this.formLogin.value.userName!.toUpperCase();
     this.formLogin.value.password = this.formLogin.value.password!.trim();
   }
 
-  public backHome() {
-    this._route.navigate(['home']).then(() => window.location.reload());
+  public routeTo(link: string) {
+    this._route.navigate([link]).then(() => location.reload());
   }
 
 }

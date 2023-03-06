@@ -54,8 +54,8 @@
   <div
     class="absolute lg:top-[235px] lg:right-[20px] enabled:h-screen lg:h-fit sm:max-lg:inset-y-[70px] sm:max-lg:inset-x-0 lg:z-50"
   >
-    <app-login *ngIf="mostraMenuLogin && !isLogged"></app-login>
-    <app-menu-utente *ngIf="mostraMenuLogin && isLogged"></app-menu-utente>
+    <app-login *ngIf="mostraMenuLogin && !isLogged" (hideLoginEvent)="openOrHideLoginMenu()"></app-login>
+    <app-menu-utente *ngIf="mostraMenuLogin && isLogged" (hideMenuUtenteEvent)="openOrHideLoginMenu()" ></app-menu-utente>
   </div>
   <div
     class="absolute lg:top-[235px] lg:left-[20px] enabled:h-screen lg:h-fit sm:max-lg:inset-x-0 lg:z-50"

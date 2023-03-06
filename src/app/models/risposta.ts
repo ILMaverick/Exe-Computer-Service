@@ -1,8 +1,9 @@
 export class Risposta {
     risultato: boolean = false;
-    id_utente: number = 0;
+    id_utente: string = '';
     nome: string = '';
-    email: string = '';
+    ruolo: string = '';
     token: string = '';
+    scadenzaToken: number = 0;
     messaggio: string = '';
 }
