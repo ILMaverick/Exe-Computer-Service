@@ -1,27 +1,16 @@
-# ExeApp
+EXE Computer Service - PWA
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
+Come progetto, viene presentato un modello rappresentante il futuro sito ufficiale dell'attività commerciale "EXE Computer Service s.r.l.".
 
-## Development server
+Alla base del progetto, vengono utilizzati vari framework e librerie di JavaScript:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Framework "Angular" per la parte frontend:
+  - Tailwindcss per i fogli di stile(basato su CSS)
+- Node.js e libreria Express.js:
+  - mysql2 per la comunicazione con il DB
+  - b-crypt/crypto-js per la cryptazione delle password nel DB
+  - JsonWebToken / expressJWT per la gestione dei Token di autenticazione
+  - dotEnv per la creazione di un environment
+  - nodemon per la creazione di un socket autoaggiornante
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+L'applicazione si basa su creazione e autenticazione dell'utente, che sia esso cliente o tecnico, scambio di informazioni (dalla semplice vista del profilo, fino alla richiesta di viste personalizzate) e autorizzazioni. Il tutto utilizzando il paradigma RESTfull.
