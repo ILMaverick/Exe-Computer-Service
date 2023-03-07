@@ -37,6 +37,7 @@ export class LoginComponent {
     this._auth.login(this.formLogin).subscribe((res) => {
       if (res.risultato) {
         this._auth.saveLoginData(res);
+        this._auth.emitLogged(true);
         this.routeTo('home');
         this.hideLogin();
       }

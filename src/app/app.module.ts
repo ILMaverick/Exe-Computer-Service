@@ -25,6 +25,7 @@ import { ConfrontaPasswordValidator } from './components/pagina-registrazione/co
 import { PaginaRecuperoCredenzialiComponent } from './components/pagina-recupero-credenziali/pagina-recupero-credenziali.component';
 import { ValidazioneService } from './services/interceptors/validazione.service';
 import { PaginaProfiloComponent } from './components/pagina-profilo/pagina-profilo.component';
+import { PaginaInCostruzioneComponent } from './components/pagina-in-costruzione/pagina-in-costruzione.component';
 
 
 
@@ -43,7 +44,8 @@ import { PaginaProfiloComponent } from './components/pagina-profilo/pagina-profi
     FooterComponent,
     ConfrontaPasswordValidator,
     PaginaRecuperoCredenzialiComponent,
-    PaginaProfiloComponent
+    PaginaProfiloComponent,
+    PaginaInCostruzioneComponent
   ],
   imports: [
     BrowserModule,

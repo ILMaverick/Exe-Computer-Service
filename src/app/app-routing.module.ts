@@ -5,11 +5,12 @@ import { PaginaNonTrovataComponent } from './components/pagina-non-trovata/pagin
 import { PaginaRegistrazioneComponent } from './components/pagina-registrazione/pagina-registrazione.component';
 import { PaginaRecuperoCredenzialiComponent } from './components/pagina-recupero-credenziali/pagina-recupero-credenziali.component';
 import { UtenteAutorizzatoGuard } from './services/guards/utente-autorizzato.guard';
+import { UtenteAutenticatoGuard } from './services/guards/utente-autenticato.guard';
 
 const routes: Routes = [
   { path: 'home', component: PaginaPrincipaleComponent },
-  { path: 'registrazione', component: PaginaRegistrazioneComponent },
-  { path: 'recupero', component: PaginaRecuperoCredenzialiComponent },
+  { path: 'registrazione', canActivate: [() => inject(UtenteAutenticatoGuard).canDectivate()], component: PaginaRegistrazioneComponent },
+  { path: 'recupero',component: PaginaRecuperoCredenzialiComponent },
   { path: 'utenti', loadChildren: () => import('./routes/utenti-routing.module').then(mod => mod.UtentiRoutingModule), 
       canActivate: [() => inject(UtenteAutorizzatoGuard).canActivate()]},
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -18,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

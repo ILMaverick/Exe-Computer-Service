@@ -67,7 +67,7 @@ const login = (req, res) => {
         } else if (result.length != 0) {
             await bcrypt.compare(req.body.password, result[0].password).then((_result) => {
                 if (_result) {
-                    const bearerToken = jwt.sign({}, fs.readFileSync(path.resolve('backend/controllers/private.key'), 'utf8'), {
+                    const bearerToken = jwt.sign({}, fs.readFileSync(path.resolve( __dirname + '/private.key'), 'utf8'), {
                         algorithm: 'RS256',
                         expiresIn: 300
                     });

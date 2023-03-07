@@ -18,10 +18,15 @@ export class HeaderComponent implements OnInit {
   mostraMenuSito: boolean = false;
 
   constructor(private _auth: AutenticazioneService, private _utente: UtentiService, private _vista: AggiornamentoVistaService) {
+    this._auth.getLoginEvent().subscribe(logged => {
+      this.isLogged = logged;
+      if (logged) {
+        this.nomeUtente = this._utente.getNameFromLocal();
+      }
+      this.iconaLogin = this.isLogged ? '../../../assets/utente.svg' : '../../../assets/login.svg';
+    })
     this._vista.eventVistaMenuUtente.subscribe(() => {
-      this.checkIconLogin();
       this.openOrHideLoginMenu();
-      this.checkIconLogin();
     }
     )
     this._vista.eventVistaMenuSito.subscribe(() => {

@@ -12,7 +12,7 @@ export class MenuSitoComponent {
 
   }
 
-  hideMenu(){
+  hideMenuSito(){
     this._vista.emitVistaMenuSito();
   }
 

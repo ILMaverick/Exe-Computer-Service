@@ -19,14 +19,15 @@ export class MenuUtenteComponent implements OnInit{
     this.id_utente = this._utente.getUserIdFromLocal();
   }
 
-  hideMenu(){
+  hideMenuUtente(){
     this._vista.emitVistaMenuUtente();
   }
 
   logout() {
     this._auth.logout();
+    this._auth.emitLogged(false);
     this.routeTo('home');
-    this.hideMenu();
+    this.hideMenuUtente();
   }
 
 
