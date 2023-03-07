@@ -2,9 +2,13 @@
   <div
     class="lg:rounded-[20px] lg:w-[300px] sm:max-lg:h-screen lg:border-[2px] bg-white border-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col justify-center items-center"
   >
-    <div class="h-fit w-fit sm:max-lg:w-full sm:max-lg:mb-[15%] flex flex-col items-center">
+    <div
+      class="h-fit w-fit sm:max-lg:w-full sm:max-lg:mb-[15%] flex flex-col items-center"
+    >
       <div class="lg:mt-[15px] mx-auto w-fit h-fit">
-        <p class="h-fit lg:pl-[10px] lg:text-xl text-3xl lg:text-left text-center font-bold text-[#005288ff]">
+        <p
+          class="h-fit lg:pl-[10px] lg:text-xl text-3xl lg:text-left text-center font-bold text-[#005288ff]"
+        >
           Utente
         </p>
         <input
@@ -15,7 +19,9 @@
         />
       </div>
       <div class="mt-[10px] mx-auto w-fit h-fit">
-        <p class="h-fit lg:pl-[10px] lg:text-xl text-3xl lg:text-left text-center font-bold text-[#005288ff]">
+        <p
+          class="h-fit lg:pl-[10px] lg:text-xl text-3xl lg:text-left text-center font-bold text-[#005288ff]"
+        >
           Password
         </p>
         <div class="relative h-[30px] w-[250px] mt-[5px]">
@@ -26,10 +32,12 @@
             formControlName="password"
           />
           <button
-            class="h-[20px] w-[20px]" type="button" (click)="showPassword()"
+            class="h-[20px] w-[20px]"
+            type="button"
+            (click)="showPassword()"
           >
             <img
-              [id] = "mostraOcchio"
+              [id]="mostraOcchio"
               class="absolute right-[10px] inset-y-[5px] h-[20px] w-[20px]"
               src="../../../../assets/occhio_password.svg"
               alt="occhio"
@@ -39,6 +47,7 @@
         <a
           class="ml-[50px] mt-[5px] text-sm text-center text-[#005288ff]"
           routerLink="recupero"
+          (click)="hideLogin()"
           >Password dimenticata?</a
         >
       </div>
@@ -48,11 +57,7 @@
           type="submit"
           [disabled]="!formLogin.valid"
         >
-          <p
-            class="text-lg inset-0 font-medium text-[#ffffff]"
-          >
-            LOGIN
-          </p>
+          <p class="text-lg inset-0 font-medium text-[#ffffff]">LOGIN</p>
         </button>
       </div>
       <p
@@ -61,12 +66,13 @@
         oppure
       </p>
       <div class="mb-[20px]">
-        <button type="button" class="rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]" routerLink="registrazione" (click)="hideLogin()">
-          <p
-            class="text-sm inset-0 font-light text-[#ffffff]"
-          >
-            REGISTRATI
-          </p>
+        <button
+          type="button"
+          class="rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]"
+          routerLink="registrazione"
+          (click)="hideLogin()"
+        >
+          <p class="text-sm inset-0 font-light text-[#ffffff]">REGISTRATI</p>
         </button>
       </div>
     </div>

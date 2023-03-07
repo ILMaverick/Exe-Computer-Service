@@ -8,7 +8,7 @@ router.use(cors());
 router.use(express.json())
 
 // router.use('/', users.getUsers);
-router.post('/check', utenti.getUserIdByUserName);
+router.post('/userId/userName', utenti.getUserIdByUserName);
 router.post('/byusername', utenti.userByUserName);
 
 module.exports = router;

@@ -43,6 +43,7 @@
   </div>
   <button
     class="absolute inset-y-2 lg:inset-y-auto lg:bottom-[4px] lg:rounded-t-[30px] h-[90%] max-w-[150px] lg:h-[75%] lg:w-[25%] lg:max-w-[400px] lg:px-[3%] lg:pt-[1%] bg-white z-50"
+    (click)="hideAll()"
     routerLink="home"
   >
     <img
@@ -54,7 +55,7 @@
   <div
     class="absolute lg:top-[235px] lg:right-[20px] enabled:h-screen lg:h-fit sm:max-lg:inset-y-[70px] sm:max-lg:inset-x-0 lg:z-50"
   >
-    <app-login *ngIf="mostraMenuLogin && !isLogged" (hideLoginEvent)="openOrHideLoginMenu()"></app-login>
+    <app-login *ngIf="mostraMenuLogin && !isLogged" (loginSendEvent)="checkIconLogin()" (hideLoginEvent)="openOrHideLoginMenu()"></app-login>
     <app-menu-utente *ngIf="mostraMenuLogin && isLogged" (hideMenuUtenteEvent)="openOrHideLoginMenu()" ></app-menu-utente>
   </div>
   <div

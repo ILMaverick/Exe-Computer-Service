@@ -30,16 +30,16 @@ export class AutenticazioneService {
     localStorage.setItem('scadenza', scadenza.toString());
   }
 
-  logout() {
+  logout(): void {
     localStorage.clear()
   }
 
   isLogged(): boolean {
-    return moment().isBefore(this.getExpiration());
+    return (localStorage.getItem('token') != null);
   }
 
-  getExpiration(): moment.MomentInput {
-    return moment(localStorage.getItem('scadenza'));
+  getExpiration(): string {
+    return localStorage.getItem('scadenza')!;
   }
   
   getRole(): string {

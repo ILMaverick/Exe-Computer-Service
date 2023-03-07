@@ -6,7 +6,7 @@ import { AutenticazioneService } from '../autenticazione.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ValidazioneService implements HttpInterceptor{
+export class ValidazioneService implements HttpInterceptor {
 
   constructor(private _auth: AutenticazioneService) {
   }
@@ -17,7 +17,8 @@ export class ValidazioneService implements HttpInterceptor{
 
     if (this._auth.isLogged()) {
       const authReq = req.clone({
-        headers: req.headers.set('authorization', 'Bearer ' + token)
+        headers: req.headers.set('Authorization', 'Bearer ' + token)
+
       });
 
       return next.handle(authReq);

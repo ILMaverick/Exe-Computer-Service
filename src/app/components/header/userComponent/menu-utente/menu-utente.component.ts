@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AutenticazioneService } from 'src/app/services/autenticazione.service';
+import { AggiornamentoVistaService } from 'src/app/services/interceptors/aggiornamento-vista.service';
 import { UtentiService } from 'src/app/services/utenti.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UtentiService } from 'src/app/services/utenti.service';
 })
 export class MenuUtenteComponent implements OnInit{
 
-  constructor(private route: Router, private _auth: AutenticazioneService, private _utente: UtentiService) { }
+  constructor(private route: Router, private _auth: AutenticazioneService, private _utente: UtentiService, private _vista: AggiornamentoVistaService) { }
 
   id_utente:string = '';
 
@@ -18,14 +19,19 @@ export class MenuUtenteComponent implements OnInit{
     this.id_utente = this._utente.getUserIdFromLocal();
   }
 
+  hideMenu(){
+    this._vista.emitVistaMenuUtente();
+  }
+
   logout() {
     this._auth.logout();
-    this.backHome();
+    this.routeTo('home');
+    this.hideMenu();
   }
 
 
 
-  private backHome() {
-    this.route.createUrlTree(['home']);
+  private routeTo(link: string) {
+    this.route.createUrlTree([link]);
   }
 }

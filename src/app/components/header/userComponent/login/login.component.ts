@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticazioneService } from 'src/app/services/autenticazione.service';
+import { AggiornamentoVistaService } from 'src/app/services/interceptors/aggiornamento-vista.service';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,7 @@ import { AutenticazioneService } from 'src/app/services/autenticazione.service';
 export class LoginComponent {
 
 
-  constructor(private _route: Router, private _auth: AutenticazioneService, private _formBuild: FormBuilder) { }
-  
-  @Output() hideLoginEvent = new EventEmitter();
+  constructor(private _route: Router, private _auth: AutenticazioneService, private _formBuild: FormBuilder, private _vista: AggiornamentoVistaService) { }
 
   formLogin = this._formBuild.group({
     userName: ['', [Validators.required, Validators.maxLength(40)]],
@@ -22,7 +21,7 @@ export class LoginComponent {
   );
 
   hideLogin(){
-    this.hideLoginEvent.emit();
+    this._vista.emitVistaMenuUtente();
   }
 
   mostraPassword: string = 'password';
@@ -39,6 +38,7 @@ export class LoginComponent {
       if (res.risultato) {
         this._auth.saveLoginData(res);
         this.routeTo('home');
+        this.hideLogin();
       }
       else {
         alert(res.messaggio);
@@ -58,7 +58,7 @@ export class LoginComponent {
   }
 
   public routeTo(link: string) {
-    this._route.createUrlTree([link]);
+    this._route.navigate([link]);
   }
 
 }

@@ -15,10 +15,6 @@ export class UtentiService {
 
   utentiUrl: string = environment.utentiUrl;
 
-  getUserCodeById(id: number): Observable<Risposta> {
-    return this._http.get<Risposta>(this.utentiUrl + '/usercode/:' + id.toString());
-  }
-
   getUserByUserName(userName: string): Observable<Risposta> {
     return this._http.post<Risposta>(this.utentiUrl + '/byusername', userName);
   }
@@ -28,7 +24,7 @@ export class UtentiService {
   }
 
   checkUser(userName: string): Observable<Risposta> {
-    return this._http.post<Risposta>(this.utentiUrl + '/check', { userName: userName })
+    return this._http.post<Risposta>(this.utentiUrl + '/userId/userName', { userName: userName })
   }
 
   getUserIdFromLocal(){

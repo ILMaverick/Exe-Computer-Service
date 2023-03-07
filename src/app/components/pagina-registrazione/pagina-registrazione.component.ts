@@ -60,19 +60,21 @@ export class PaginaRegistrazioneComponent implements OnInit{
   submitRegistration() {
     this.fixInputsForm();
     this._utente.checkUser(this.formRegistrazione.value.email!).subscribe((res) => {
+      console.log(res.risultato);
       if (!res.risultato) {
         this._auth.registerUser(this.formRegistrazione).subscribe((_res) => {
           if (_res.risultato) {
-            _res.id_utente = res.id_utente;
+            this._utente.checkUser(this.formRegistrazione.value.email!).subscribe((__res) => {
+            _res.id_utente = __res.id_utente;
+            _res.ruolo = __res.ruolo;
             this._auth.saveLoginData(_res);
             this.routeTo('home');
+            })
           }
         })
       } else {
         alert(res.messaggio);
       }
-      
-    console.log(res);
     });
   }
 

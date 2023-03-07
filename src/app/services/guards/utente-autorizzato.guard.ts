@@ -13,7 +13,7 @@ export class UtenteAutorizzatoGuard {
 
   }
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!this._utente.getUserIdFromLocal()) {
+    if (this._utente.getUserIdFromLocal()) {
       alert('Utente non autorizzato o sessione scaduta. Effettuare il Login!');
       this._route.createUrlTree(['home']);
       return false;
