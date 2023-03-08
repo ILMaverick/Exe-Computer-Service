@@ -26,6 +26,7 @@ export class MenuUtenteComponent implements OnInit{
   logout() {
     this._auth.logout();
     this._auth.emitLogged(false);
+    console.log('logout effettuato');
     this.routeTo('home');
     this.hideMenuUtente();
   }
