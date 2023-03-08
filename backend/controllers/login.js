@@ -21,7 +21,7 @@ const login = (req, res) => {
                 if (_result) {
                     const bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private.key'), 'utf8'), {
                         algorithm: 'RS256',
-                        expiresIn: 300
+                        expiresIn: 1800
                     });
                     res.status(200)
                         .send({
@@ -30,7 +30,7 @@ const login = (req, res) => {
                             nome: result[0].nome,
                             ruolo: result[0].ruolo,
                             token: bearerToken,
-                            scadenzaToken: 300,
+                            scadenzaToken: 1800,
                             messaggio: "Login effettuato!"
                         });
                 }

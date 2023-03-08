@@ -21,7 +21,7 @@ export class UtenteAutenticatoGuard{
 
   }
 
-  canDectivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivateRegistration(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this._auth.isLogged()) {
       this._route.createUrlTree(['home']);
       return false;

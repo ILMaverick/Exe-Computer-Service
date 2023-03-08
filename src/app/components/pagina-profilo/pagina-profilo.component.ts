@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UtentiService } from 'src/app/services/utenti.service';
 
 @Component({
   selector: 'app-pagina-profilo',
@@ -8,7 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PaginaProfiloComponent {
 
-  constructor(){
+  constructor(private _utente: UtentiService, private _route: ActivatedRoute){
+    this._route.params.subscribe(params => {
+    })
     
   }
 

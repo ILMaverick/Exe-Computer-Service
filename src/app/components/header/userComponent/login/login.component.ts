@@ -38,6 +38,7 @@ export class LoginComponent {
       if (res.risultato) {
         this._auth.saveLoginData(res);
         this._auth.emitLogged(true);
+        console.log('login effettuato');
         this.routeTo('home');
         this.hideLogin();
       }

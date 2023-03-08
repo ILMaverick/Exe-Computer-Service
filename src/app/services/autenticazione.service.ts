@@ -43,7 +43,7 @@ export class AutenticazioneService {
   }
 
   isLogged(): boolean {
-    return this.getToken() && +this.getExpiration()! > Date.now() ? true : false;
+    return this.getToken() && this.getExpiration() && +this.getExpiration() > Date.now() ? true : false;
   }
   getToken(): string | null {
     return localStorage.getItem('token');

@@ -33,6 +33,6 @@ export class MenuUtenteComponent implements OnInit{
 
 
   private routeTo(link: string) {
-    this.route.createUrlTree([link]);
+    this.route.navigate([link]);
   }
 }

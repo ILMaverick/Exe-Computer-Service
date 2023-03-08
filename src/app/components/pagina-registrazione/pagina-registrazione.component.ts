@@ -10,13 +10,13 @@ import { ConfrontaPasswordValidator } from './confronta-password/confronta-passw
   templateUrl: './pagina-registrazione.component.html',
   styleUrls: ['./pagina-registrazione.component.css']
 })
-export class PaginaRegistrazioneComponent implements OnInit{
+export class PaginaRegistrazioneComponent implements OnInit {
 
   constructor(private _route: Router, private _auth: AutenticazioneService, private _formBuild: FormBuilder, private _utente: UtentiService) {
 
   }
   ngOnInit(): void {
-    if(this._auth.isLogged()){
+    if (this._auth.isLogged()) {
       this.routeTo('home');
     }
   }
@@ -60,15 +60,16 @@ export class PaginaRegistrazioneComponent implements OnInit{
   submitRegistration() {
     this.fixInputsForm();
     this._utente.checkUser(this.formRegistrazione.value.email!).subscribe((res) => {
-      console.log(res.risultato);
       if (!res.risultato) {
         this._auth.registerUser(this.formRegistrazione).subscribe((_res) => {
           if (_res.risultato) {
             this._utente.checkUser(this.formRegistrazione.value.email!).subscribe((__res) => {
-            _res.id_utente = __res.id_utente;
-            _res.ruolo = __res.ruolo;
-            this._auth.saveLoginData(_res);
-            this.routeTo('home');
+              _res.id_utente = __res.id_utente;
+              _res.ruolo = __res.ruolo;
+              this._auth.saveLoginData(_res);
+              this._auth.emitLogged(true);
+              console.log('registrazione effettuata');
+              this.routeTo('home');
             })
           }
         })
@@ -87,7 +88,7 @@ export class PaginaRegistrazioneComponent implements OnInit{
   }
 
   public routeTo(link: string) {
-    this._route.createUrlTree([link]);
+    this._route.navigate([link]);
   }
 
 }
