@@ -5,19 +5,32 @@ import { PaginaNonTrovataComponent } from './components/pagina-non-trovata/pagin
 import { PaginaRegistrazioneComponent } from './components/pagina-registrazione/pagina-registrazione.component';
 import { PaginaRecuperoCredenzialiComponent } from './components/pagina-recupero-credenziali/pagina-recupero-credenziali.component';
 import { UtenteAutenticatoGuard } from './services/guards/utente-autenticato.guard';
+import { UtenteAutorizzatoGuard } from './services/guards/utente-autorizzato.guard';
+import { TechAutorizzatoGuard } from './services/guards/tech-autorizzato.guard';
+import { PaginaUtentiComponent } from './components/pagina-utenti/pagina-utenti.component';
+import { PaginaUtenteComponent } from './components/pagina-utenti/pagina-utente/pagina-utente.component';
 
 const routes: Routes = [
   { path: 'home', component: PaginaPrincipaleComponent },
   { path: 'registrazione', canActivate: [() => inject(UtenteAutenticatoGuard).canActivateRegistration()], component: PaginaRegistrazioneComponent },
-  { path: 'recupero',component: PaginaRecuperoCredenzialiComponent },
-  { path: 'utenti', loadChildren: () => import('./routes/utenti-routing.module').then(module => module.UtentiRoutingModule)},
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'recupero', component: PaginaRecuperoCredenzialiComponent },
+  {
+    path: 'utenti', canActivateChild: [() => inject(UtenteAutenticatoGuard).canActivate()], children: [{
+      path: 'all', canActivate: [() => inject(TechAutorizzatoGuard).canActivate()], component: PaginaUtentiComponent
+    },
+    {
+      path: ':id', canActivate: [() => inject(UtenteAutorizzatoGuard).canActivate()], component: PaginaUtenteComponent
+    }]
+  },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: '404', component: PaginaNonTrovataComponent },
-  { path: '**', pathMatch: 'full', redirectTo: '404' }
+  { path: '**', pathMatch: 'full', redirectTo: '/404' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes
+    // , { enableTracing: true}
+    )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

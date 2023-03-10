@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const cors = require('cors')
 const utenti = require('../controllers/utenti.js');
-const checkIfAuthenticated = require('../autenticazione/autenticazioneToken.js')
+const authentication = require('./../autenticazione/autenticazioneToken');
 
 router.use(cors());
 router.use(express.json())
 
-// router.use('/', users.getUsers);
-router.post('/userId/userName', utenti.getUserIdByUserName);
-router.post('/byusername', utenti.userByUserName);
+router.post('/userId/userName', authentication, utenti.getIdUtenteByUserName);
+router.post('/byUserId', authentication, utenti.getUtenteByIdUtente);
+router.post('/role', authentication, utenti.getRuoloByIdUtente);
 
 module.exports = router;

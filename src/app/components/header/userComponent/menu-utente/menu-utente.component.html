@@ -13,17 +13,17 @@
     ></div>
     <ul class=" lg:mx-[40px] lg:py-[20px] h-fit list-disc lg:space-y-[10px] space-y-[30px]">
       <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
-        <button class="h-[20px]" routerLink="utenti/{{id_utente}}" (click)="hideMenuUtente()">
+        <button class="h-[20px]" routerLink="/utenti/{{id_utente}}" (click)="hideMenuUtente()">
           Profilo
         </button>
       </li>
       <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
-        <button class="h-[20px]" routerLink="interventi/{{id_utente}}" (click)="hideMenuUtente()">
+        <button class="h-[20px]" [routerLink]="['interventi', id_utente]" (click)="hideMenuUtente()">
           Interventi
         </button>
       </li>
       <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
-        <button class="h-[20px] w-fit" routerLink="tickets/{{id_utente}}" (click)="hideMenuUtente()">
+        <button class="h-[20px] w-fit" [routerLink]="['tickets', id_utente]" (click)="hideMenuUtente()">
           I miei Tickets
         </button>
       </li>

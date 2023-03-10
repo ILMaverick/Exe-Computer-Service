@@ -6,7 +6,7 @@ export class Utente {
     numero_tel: string = '';
     email: string = '';
     indirizzo: string = '';
-    numero_civ: number = 0;
+    numero_civico: number = 0;
     citta: string = '';
-    provicnia: string = '';
+    provincia: string = '';
 }

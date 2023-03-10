@@ -1,21 +1,36 @@
+const jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require('fs');
 
-const { expressjwt: jwt } = require("express-jwt");
-
-const publicKey = fs.readFileSync(path.resolve('backend/autenticazione/public.key'), 'utf8');
-
-jwt({
-    secret: publicKey, algorithms: ["RS256"], getToken: function fromHeaderOrQuerystring(req) {
-        if (req.headers.authorization && req.headers.authorization.split(" ")[0] === "Bearer") {
-            return req.headers.authorization.split(" ")[1];
-        } else if (req.query && req.query.token) {
-            return req.query.token;
-        }
-        return null;
+const authentication = (req, res, next) => {
+    const header = req.headers.authorization
+    if(!header) {
+        return res.status(403).send({
+            message: 'Nessuna autenticazione!'
+        })
     }
-});
+    else {
+        const token = (header.split(' '))[1];
+        if(token) {
+            jwt.verify(token, fs.readFileSync(path.resolve(__dirname + '/public-key.pem'), 'utf8'),{ algorithms: ['RS256']}, (err) => {
+                if(err) {
+                    return res.status(403).send({
+                        message: 'Errore nella lettura del token: ' + err
+                    })
+                }
+                else {
+                    next()
+                }
+            });
+        }
+        else {
+            return res.status(403).send({
+                message: 'Nessun token di accesso'
+            })
+        }
+    }
+}
 
 
 
-module.exports = jwt;
+module.exports = authentication;

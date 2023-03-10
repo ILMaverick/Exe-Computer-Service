@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticazioneService } from 'src/app/services/autenticazione.service';
-import { AggiornamentoVistaService } from 'src/app/services/interceptors/aggiornamento-vista.service';
+import { AggiornamentoVistaService } from 'src/app/services/aggiornamento-vista.service';
 
 @Component({
   selector: 'app-login',

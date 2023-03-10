@@ -13,7 +13,7 @@
         </p>
         <input
           type="text"
-          placeholder="Codice-Utente/Email/Telefono"
+          placeholder="Email/Telefono"
           class="rounded-full h-[30px] w-[250px] text-sm text-left mt-[5px] pl-[20px] pr-[20px] bg-gray-200 border-[2px] hover:border-[#435da5] focus-within:outline-[#005288ff]"
           formControlName="userName"
         />
@@ -46,7 +46,7 @@
         </div>
         <a
           class="ml-[50px] mt-[5px] text-sm text-center text-[#005288ff]"
-          routerLink="recupero"
+          routerLink="/recupero"
           (click)="hideLogin()"
           >Password dimenticata?</a
         >
@@ -69,7 +69,7 @@
         <button
           type="button"
           class="rounded-[5px] h-[30px] w-[100px] bg-[#005288ff]"
-          routerLink="registrazione"
+          routerLink="/registrazione"
           (click)="hideLogin()"
         >
           <p class="text-sm inset-0 font-light text-[#ffffff]">REGISTRATI</p>

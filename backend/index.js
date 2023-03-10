@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotEnv = require('dotenv');
 const utentiRouter = require('./routes/utentiRouter.js');
+const techRouter = require('./routes/techRouter.js');
 const login = require('./controllers/login.js');
 const register = require('./controllers/registrazione.js');
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.post('/login', login);
 app.post('/register', register);
 app.use('/users', utentiRouter);
+app.use('/tech', techRouter);
 // app.use('/interventions', interventiRouter);
 // app.use('/hardware', hardwareRouter);
 // app.use('/tech', techRouter);

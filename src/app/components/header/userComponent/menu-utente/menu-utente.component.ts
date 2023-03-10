@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AutenticazioneService } from 'src/app/services/autenticazione.service';
-import { AggiornamentoVistaService } from 'src/app/services/interceptors/aggiornamento-vista.service';
+import { AggiornamentoVistaService } from 'src/app/services/aggiornamento-vista.service';
 import { UtentiService } from 'src/app/services/utenti.service';
 
 @Component({
@@ -11,9 +11,11 @@ import { UtentiService } from 'src/app/services/utenti.service';
 })
 export class MenuUtenteComponent implements OnInit{
 
-  constructor(private route: Router, private _auth: AutenticazioneService, private _utente: UtentiService, private _vista: AggiornamentoVistaService) { }
+  constructor(private route: Router, private _auth: AutenticazioneService, private _utente: UtentiService, private _vista: AggiornamentoVistaService, private _actRoute: ActivatedRoute) {
+    
+   }
 
-  id_utente:string = '';
+  id_utente!: string;
 
   ngOnInit(): void {
     this.id_utente = this._utente.getUserIdFromLocal();

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Utente } from 'src/app/models/utente';
 import { AutenticazioneService } from 'src/app/services/autenticazione.service';
-import { AggiornamentoVistaService } from 'src/app/services/interceptors/aggiornamento-vista.service';
+import { AggiornamentoVistaService } from 'src/app/services/aggiornamento-vista.service';
 import { UtentiService } from 'src/app/services/utenti.service';
 
 @Component({

@@ -10,8 +10,8 @@ dotEnv.config({ path: __dirname + '/../.env' });
 const db_utenti = process.env.DB_USER;
 const db_password = process.env.DB_USER_PASSWORD;
 
-const getUserIdByUserName = (req, res) => {
-    db(db_utenti, db_password).query('SELECT id_utente, ruolo FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.userName, req.body.userName], (err, result) => {
+const getIdUtenteByUserName = (req, res) => {
+    db(db_utenti, db_password).query('SELECT id_utente FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.userName, req.body.userName], (err, result) => {
         if (err) {
             res.status(400).send({
                 messaggio: err.message
@@ -21,7 +21,6 @@ const getUserIdByUserName = (req, res) => {
             res.status(200).send({
                 risultato: true,
                 id_utente: result[0].id_utente,
-                ruolo: result[0].ruolo,
                 messaggio: "Utente trovato!"
             });
             return true;
@@ -35,7 +34,7 @@ const getUserIdByUserName = (req, res) => {
     });
 }
 
-const getRoleByUserId = (req, res) => {
+const getRuoloByIdUtente = (req, res) => {
     db(db_utenti, db_password).query('SELECT ruolo FROM utenti WHERE id_utente = ?', [req.body.id_utente], (err, result) => {
         if (err) {
             res.status(400).send({
@@ -49,14 +48,14 @@ const getRoleByUserId = (req, res) => {
         } else {
             res.status(200).send({
                 risultato: false,
-                messaggio: "Utente non trovato!"
+                messaggio: "Ruolo non trovato!"
             });
         }
     });
 }
 
-const userByUserName = (req, res) => {
-    db(db_utenti, db_password).query('SELECT * FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.userName, req.body.userName], (err, result) => {
+const getUtenteByIdUtente = (req, res) => {
+    db(db_utenti, db_password).query('SELECT * FROM utenti WHERE id_utente = ?', [req.body.id_utente], (err, result) => {
         if (err) {
             res.status(400).send({
                 messaggio: err.message
@@ -69,6 +68,10 @@ const userByUserName = (req, res) => {
                 cognome: result[0].cognome,
                 numero_tel: result[0].numero_tel,
                 email: result[0].email,
+                indirizzo: result[0].indirizzo,
+                numero_civico: result[0].numero_civico,
+                citta: result[0].citta,
+                provincia: result[0].provincia,
                 messaggio: "Utente trovato!"
             });
         } else {
@@ -80,4 +83,4 @@ const userByUserName = (req, res) => {
     );
 }
 
-module.exports = { getUserIdByUserName, userByUserName, getRoleByUserId };
+module.exports = { getIdUtenteByUserName, getUtenteByIdUtente, getRuoloByIdUtente };

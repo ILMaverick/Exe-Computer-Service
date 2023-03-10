@@ -59,18 +59,20 @@ export class PaginaRegistrazioneComponent implements OnInit {
 
   submitRegistration() {
     this.fixInputsForm();
-    this._utente.checkUser(this.formRegistrazione.value.email!).subscribe((res) => {
+    this._utente.getUserIdByUserName(this.formRegistrazione.value.email!).subscribe((res) => {
       if (!res.risultato) {
         this._auth.registerUser(this.formRegistrazione).subscribe((_res) => {
           if (_res.risultato) {
-            this._utente.checkUser(this.formRegistrazione.value.email!).subscribe((__res) => {
-              _res.id_utente = __res.id_utente;
-              _res.ruolo = __res.ruolo;
-              this._auth.saveLoginData(_res);
-              this._auth.emitLogged(true);
-              console.log('registrazione effettuata');
-              this.routeTo('home');
-            })
+            this._utente.getUserIdByUserName(this.formRegistrazione.value.email!).subscribe((__res) => {
+              _res.id_utente = __res.id_utente;              
+            });
+            this._utente.getRole().subscribe((__res) => {
+              _res.ruolo = __res.ruolo;              
+            });
+            this._auth.saveLoginData(_res);
+            this._auth.emitLogged(true);
+            console.log('registrazione effettuata');
+            this.routeTo('home');
           }
         })
       } else {

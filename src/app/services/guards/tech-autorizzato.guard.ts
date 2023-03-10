@@ -9,12 +9,15 @@ import { UtentiService } from '../utenti.service';
 })
 export class TechAutorizzatoGuard {
 
-  constructor (private _auth: AutenticazioneService, private _route: Router){
+  constructor (private _auth: AutenticazioneService, private _utente: UtentiService,private _route: Router){
 
   }
+  
+  ruolo!: string;
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!this._auth.isLogged() || !this._auth.getRole().match('tecnico')) {
+    this._utente.getRole().subscribe(res => {this.ruolo = res.ruolo});
+    if (!this.ruolo.match('tecnico')) {
       alert('Utente non autorizzato o sessione scaduta. Effettuare il Login!');
       this._route.createUrlTree(['home']);
       return false;

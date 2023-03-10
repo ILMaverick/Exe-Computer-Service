@@ -24,8 +24,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ConfrontaPasswordValidator } from './components/pagina-registrazione/confronta-password/confronta-password-validator.directive';
 import { PaginaRecuperoCredenzialiComponent } from './components/pagina-recupero-credenziali/pagina-recupero-credenziali.component';
 import { ValidazioneService } from './services/interceptors/validazione.service';
-import { PaginaProfiloComponent } from './components/pagina-profilo/pagina-profilo.component';
 import { PaginaInCostruzioneComponent } from './components/pagina-in-costruzione/pagina-in-costruzione.component';
+import { PaginaUtentiComponent } from './components/pagina-utenti/pagina-utenti.component';
+import { PaginaUtenteComponent } from './components/pagina-utenti/pagina-utente/pagina-utente.component';
 
 
 
@@ -44,18 +45,19 @@ import { PaginaInCostruzioneComponent } from './components/pagina-in-costruzione
     FooterComponent,
     ConfrontaPasswordValidator,
     PaginaRecuperoCredenzialiComponent,
-    PaginaProfiloComponent,
-    PaginaInCostruzioneComponent
+    PaginaInCostruzioneComponent,
+    PaginaUtentiComponent,
+    PaginaUtenteComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     TextFieldModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

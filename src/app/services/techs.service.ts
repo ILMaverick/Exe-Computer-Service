@@ -14,9 +14,13 @@ export class TechsService {
   constructor(private _http: HttpClient) {
   }
 
-  utentiUrl: string = environment.utentiUrl;
+  techUrl: string = environment.techUrl;
 
-  getUsers(): Observable<Risposta[]> {
-    return this._http.get<Risposta[]>(this.utentiUrl + '/all');
+  getInterventi(): Observable<Risposta[]> {
+    return this._http.get<Risposta[]>(this.techUrl + '/intervents');
+  }
+
+  getInterventiByStatoIntervento(stato_intervento: string){
+    return this._http.post<Risposta[]>(this.techUrl + '/intervents', {stato_intervento: stato_intervento});
   }
 }

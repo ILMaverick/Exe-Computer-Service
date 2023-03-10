@@ -4,13 +4,16 @@ import { environment } from 'src/environments/environment.development';
 import { Risposta } from '../models/risposta';
 import { Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
+import { UtentiService } from './utenti.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticazioneService {
 
-  constructor(private _http: HttpClient) { };
+  constructor(private _http: HttpClient, private _utente: UtentiService) { };
+
+
 
   loginEvent = new EventEmitter<boolean>();
 
@@ -37,7 +40,6 @@ export class AutenticazioneService {
   saveLoginData(risp: Risposta): void {
     localStorage.setItem('id_utente', risp.id_utente);
     localStorage.setItem('nome', risp.nome);
-    localStorage.setItem('ruolo', risp.ruolo);
     localStorage.setItem('token', risp.token);
     localStorage.setItem('scadenza', (Date.now() + (risp.scadenzaToken * 1000)).toString());
   }
@@ -51,10 +53,6 @@ export class AutenticazioneService {
 
   getExpiration(): string {
     return localStorage.getItem('scadenza')!;
-  }
-
-  getRole(): string {
-    return localStorage.getItem('ruolo')!;
   }
 
 }

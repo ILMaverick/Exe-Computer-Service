@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const db = require('./../database/dbService.js');
+const db = require('../database/dbService.js');
 const dotEnv = require('dotenv');
 const path = require('path');
 const fs = require('fs');
@@ -19,7 +19,7 @@ const login = (req, res) => {
         } else if (result.length != 0) {
             await bcrypt.compare(req.body.password, result[0].password).then((_result) => {
                 if (_result) {
-                    const bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private.key'), 'utf8'), {
+                    const bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key.pem'), 'utf8'),{
                         algorithm: 'RS256',
                         expiresIn: 1800
                     });
@@ -28,7 +28,6 @@ const login = (req, res) => {
                             risultato: true,
                             id_utente: result[0].id_utente,
                             nome: result[0].nome,
-                            ruolo: result[0].ruolo,
                             token: bearerToken,
                             scadenzaToken: 1800,
                             messaggio: "Login effettuato!"

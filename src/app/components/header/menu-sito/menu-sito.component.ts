@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AggiornamentoVistaService } from 'src/app/services/interceptors/aggiornamento-vista.service';
+import { AggiornamentoVistaService } from 'src/app/services/aggiornamento-vista.service';
 
 @Component({
   selector: 'app-menu-sito',

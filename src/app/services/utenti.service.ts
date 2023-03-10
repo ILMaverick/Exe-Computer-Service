@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Risposta } from '../models/risposta';
+import { Utente } from '../models/utente';
 
 @Injectable({
   providedIn: 'root'
@@ -15,19 +15,21 @@ export class UtentiService {
 
   utentiUrl: string = environment.utentiUrl;
 
-  getUserByUserName(userName: string): Observable<Risposta> {
-    return this._http.post<Risposta>(this.utentiUrl + '/byusername', userName);
+
+  
+  getUserByUserId(id_utente: string): Observable<Utente> {
+    return this._http.post<Utente>(this.utentiUrl + '/byUserId', { id_utente: id_utente });
   }
 
   getUserIdByUserName(userName: string): Observable<Risposta> {
-    return this._http.post<Risposta>(this.utentiUrl + '/userID/username', { userName: userName })
+    return this._http.post<Risposta>(this.utentiUrl + '/userId/username', { userName: userName })
   }
 
-  checkUser(userName: string): Observable<Risposta> {
-    return this._http.post<Risposta>(this.utentiUrl + '/userId/userName', { userName: userName })
+  getRole(): Observable<Risposta> {
+    return this._http.post<Risposta>(this.utentiUrl + '/role', { id_utente: this.getUserIdFromLocal })
   }
 
-  getUserIdFromLocal(){
+  getUserIdFromLocal(): string {
     return localStorage.getItem('id_utente')!;
   }
 
