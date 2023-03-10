@@ -35,7 +35,7 @@
         (click)="openOrHideLoginMenu()"
       >
         <img class="h-full mr-[15px]" [src]="iconaLogin" alt="utente" />
-        <p class="my-auto text-2xl text-[#005288ff]">
+        <p class="my-auto text-2xl text-[#005288ff] sm:max-lg:hidden">
           {{ isLogged ? "Ciao, " + nomeUtente : "Accedi" }}!
         </p>
       </button>

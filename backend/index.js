@@ -19,7 +19,6 @@ app.use('/users', utentiRouter);
 app.use('/tech', techRouter);
 // app.use('/interventions', interventiRouter);
 // app.use('/hardware', hardwareRouter);
-// app.use('/tech', techRouter);
 
 app.listen(process.env.SERVER_PORT, () =>
     console.log(`Server EXE online sulla porta:${process.env.SERVER_PORT}`))
