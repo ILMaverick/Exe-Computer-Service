@@ -16,11 +16,11 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/login', login);
-app.post('/register', registrazione);
-app.use('/users', utentiRouter);
+app.post('/registrazione', registrazione);
+app.use('/utenti', utentiRouter);
 app.use('/tech', techRouter);
-app.use('/interventions', interventiRouter);
-app.use('/hardware', hardwareRouter);
+app.use('/interventi', interventiRouter);
+app.use('/hardwares', hardwareRouter);
 
 app.listen(process.env.PORTA_SERVER, () =>
     console.log(`Server EXE online sulla porta:${process.env.PORTA_SERVER}`))

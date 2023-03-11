@@ -13,9 +13,27 @@
         </p>
       </div>
     </div>
-    <div class="h-auto w-[80%] flex flex-col items-center">
-      <div>
-        
+    <div class="h-auto w-[80%] flex flex-col items-center space-y-[10px]">
+      <div *ngFor="let utente of utenti" class="h-[60px] w-full flex flex-row items-center">
+        <button class="h-full w-[120px] rounded-l-[15px] rounded-r-none bg-[#005288ff] flex flex-col items-center">
+          <p class="h-full ml-auto text-3xl font-bold text-[#ffffff] flex">
+            {{utente.id_utente}}
+          </p>
+        </button>
+        <div class="h-full w-full rounded-l-none rounded-r-[15px] bg-[#ffffff] border-[2px] border-x-[#005288ff] flex flex-row items-center divide-x-[2px]">
+          <p class="h-full w-[20%] mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
+            {{utente.nome}}
+          </p>
+          <p class="h-full w-[20%] mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
+            {{utente.cognome}}
+          </p>
+          <p class="h-full w-[20%] mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
+            {{utente.numero_tel}}
+          </p>
+          <p class="h-full w-[40%] mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
+            {{utente.email}}
+          </p>
+        </div>
       </div>
     </div>
   </div>

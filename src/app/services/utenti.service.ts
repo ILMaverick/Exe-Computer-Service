@@ -19,11 +19,11 @@ export class UtentiService {
 
   
   getUserByUserId(id_utente: string): Observable<Utente> {
-    return this._http.post<Utente>(this.utentiUrl + '/byUserId', { id_utente: id_utente });
+    return this._http.post<Utente>(this.utentiUrl + '/utente/idUtente', { id_utente: id_utente });
   }
 
-  getUserIdByUserName(userName: string): Observable<Risposta> {
-    return this._http.post<Risposta>(this.utentiUrl + '/userId/username', { userName: userName });
+  getUserIdByUserName(userName: string): Observable<Utente> {
+    return this._http.post<Utente>(this.utentiUrl + '/idUtente/userName', { userName: userName });
   }
   
   getRoleFromLocal(): string {

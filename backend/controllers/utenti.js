@@ -1,14 +1,33 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
 const db = require('../database/dbService');
 const dotEnv = require('dotenv');
-const path = require('path');
-const fs = require('fs');
 
 dotEnv.config({ path: __dirname + '/../.env' });
 
-const db_utente = process.env.DB_UTENTI;
-const db_password_utente = process.env.DB_PASSWORD_UTENTI;
+const db_utente = process.env.DB_UTENTE;
+const db_password_utente = process.env.DB_PASSWORD_UTENTE;
+const db_tech = process.env.DB_TECH;
+const db_password_tech = process.env.DB_PASSWORD_TECH;
+
+const getUtenti = (req, res) => {
+    db(db_tech, db_password_tech).query('SELECT * FROM utenti', (err, result) => {
+        if (err) {
+            res.status(400).send({
+                messaggio: err.message
+            });
+        } else if (result.length != 0) {
+            res.status(200).send({
+                risultato: true,
+                utenti: result,
+                messaggio: "Utenti trovati!"
+            });
+        } else {
+            res.status(200).send({
+                risultato: false,
+                messaggio: "Nessun utente!"
+            });
+        }
+    });
+}
 
 const getIdUtenteByUserName = (req, res) => {
     db(db_utente, db_password_utente).query('SELECT id_utente FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.userName, req.body.userName], (err, result) => {
@@ -16,20 +35,17 @@ const getIdUtenteByUserName = (req, res) => {
             res.status(400).send({
                 messaggio: err.message
             });
-            return false;
         } else if (result.length != 0) {
             res.status(200).send({
                 risultato: true,
                 id_utente: result[0].id_utente,
                 messaggio: "Utente trovato!"
             });
-            return true;
         } else {
             res.status(200).send({
                 risultato: false,
                 messaggio: "Utente non trovato!"
             });
-            return false;
         }
     });
 }
@@ -83,4 +99,4 @@ const getUtenteByIdUtente = (req, res) => {
     );
 }
 
-module.exports = { getIdUtenteByUserName, getUtenteByIdUtente, getRuoloByIdUtente };
+module.exports = { getUtenti, getIdUtenteByUserName, getUtenteByIdUtente, getRuoloByIdUtente };

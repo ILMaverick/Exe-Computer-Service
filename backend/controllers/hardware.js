@@ -1,6 +1,5 @@
 const db = require('../database/dbService');
 const dotEnv = require('dotenv');
-const path = require('path');
 
 dotEnv.config({ path: __dirname + '/../.env' });
 
@@ -69,25 +68,5 @@ const getHardwareByIdHardware = (req, res) => {
     );
 }
 
-const getHardwareByCodiceHardware = (req, res) => {
-    db(db_tech, db_password_tech).query('SELECT * FROM hardware WHERE codice_hardware = ?', [req.body.codice_hardware], (err, result) => {
-        if (err) {
-            res.status(400).send({
-                messaggio: err.message
-            });
-        } else if (result.length != 0) {
-            res.status(200).send({
-                hardware: result,
-                messaggio: "hardware trovati!"
-            });
-        } else {
-            res.status(200).send({
-                messaggio: "Nessun hardware!"
-            });
-        }
-    }
-    );
-}
-
-module.exports = {getHardwares, getHardwaresByUtente, getHardwareByIdHardware, getHardwareByCodiceHardware}
+module.exports = {getHardwares, getHardwaresByUtente, getHardwareByIdHardware}
 

@@ -11,13 +11,15 @@ import { TechsService } from 'src/app/services/techs.service';
 export class PaginaUtentiComponent implements OnInit{
 
   constructor(private _tech: TechsService, private route: Router, private ActRoute: ActivatedRoute){
-    // this.utenti = 
+    
   }
 
-  // utenti: Utente[];
+  utenti!: Utente[];
 
   ngOnInit(): void {
-    
+    this._tech.getUtenti().subscribe( res => {
+      this.utenti = res.utenti
+    })
   }
 
 }

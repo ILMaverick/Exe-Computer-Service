@@ -1,6 +1,5 @@
 const db = require('../database/dbService');
 const dotEnv = require('dotenv');
-const path = require('path');
 
 dotEnv.config({ path: __dirname + '/../.env' });
 

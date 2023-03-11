@@ -4,7 +4,9 @@ const interventi = require('../controllers/interventi.js');
 
 router.use(express.json())
 
-router.get('/intervents', interventi.getInterventi);
-router.post('/intervents/state', interventi.getInterventiByStatoIntervento);
+router.get('/', interventi.getInterventi);
+router.post('/utente', interventi.getInterventiByUtente);
+router.post('/idIntervento', interventi.getInterventoByIdIntervento);
+router.post('/statoIntervento', interventi.getInterventiByStatoIntervento);
 
 module.exports = router;

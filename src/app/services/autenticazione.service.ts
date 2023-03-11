@@ -31,7 +31,7 @@ export class AutenticazioneService {
   }
 
   registerUser(form: FormGroup): Observable<Risposta> {
-    return this._http.post<Risposta>(environment.registerUrl, form.value);
+    return this._http.post<Risposta>(environment.registrazioneUrl, form.value);
   }
 
   saveLoginData(risp: Risposta): void {

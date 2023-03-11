@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { Hardware } from '../models/hardware';
+import { Intervento } from '../models/intervento';
 import { Risposta } from '../models/risposta';
 import { Utente } from '../models/utente';
 
@@ -14,16 +16,19 @@ export class TechsService {
   }
 
   techUrl: string = environment.techUrl;
+  utentiUrl: string = environment.utentiUrl;
+  hardwaresUrl: string = environment.hardwaresUrl;
+  interventiUrl: string = environment.interventiUrl;
 
-  getUtenti(): Observable<Utente[]> {
-    return this._http.get<Utente[]>(this.techUrl + '/intervents');
+  getUtenti(): Observable<Risposta> {
+    return this._http.get<Risposta>(this.utentiUrl + '/');
   }
 
-  getInterventi(): Observable<Risposta[]> {
-    return this._http.get<Risposta[]>(this.techUrl + '/intervents');
+  getInterventi(): Observable<Risposta> {
+    return this._http.get<Risposta>(this.interventiUrl + '/');
   }
 
-  getInterventiByStatoIntervento(stato_intervento: string){
-    return this._http.post<Risposta[]>(this.techUrl + '/intervents', {stato_intervento: stato_intervento});
+  getHardwares(): Observable<Hardware[]>{
+    return this._http.get<Hardware[]>(this.hardwaresUrl + '/');
   }
 }

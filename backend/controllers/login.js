@@ -7,11 +7,11 @@ const fs = require('fs');
 
 dotEnv.config({ path: __dirname + '/../.env' });
 
-const db_utenti = process.env.DB_USER;
-const db_password = process.env.DB_USER_PASSWORD;
+const db_utente = process.env.DB_UTENTE;
+const db_password_utente = process.env.DB_PASSWORD_UTENTE;
 
 const login = (req, res) => {
-    db(db_utenti, db_password).query('SELECT id_utente, nome, password, ruolo FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.userName, req.body.userName], async (err, result) => {
+    db(db_utente, db_password_utente).query('SELECT id_utente, nome, password, ruolo FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.userName, req.body.userName], async (err, result) => {
         if (err) {
             res.status(400).send({
                 messaggio: err.message

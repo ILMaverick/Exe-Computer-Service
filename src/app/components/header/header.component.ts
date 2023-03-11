@@ -58,6 +58,8 @@ export class HeaderComponent implements OnInit {
       this.isLogged = this._auth.isLogged();
       this.ruolo = this._utente.getRoleFromLocal();
       this.nomeUtente = this._utente.getNameFromLocal();
+    } else {
+      
     }
     this.iconaLogin = this.isLogged ? '../../../assets/utente.svg' : '../../../assets/login.svg';
   }

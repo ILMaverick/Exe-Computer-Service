@@ -1,6 +1,5 @@
 const db = require('../database/dbService');
 const dotEnv = require('dotenv');
-const path = require('path');
 
 dotEnv.config({ path: __dirname + '/../.env' });
 
@@ -30,7 +29,7 @@ const getAggiornamentiByIntervento = (req, res) => {
 }
 
 const getAggiornamentoByIdAggiornamento = (req, res) => {
-    db(db_utente, db_password_utente).query('SELECT * FROM Aggiornamenti WHERE id_aggiornamento = ?', [req.body.id_aggiornamento], (err, result) => {
+    db(db_tech, db_password_tech).query('SELECT * FROM Aggiornamenti WHERE id_aggiornamento = ?', [req.body.id_aggiornamento], (err, result) => {
         if (err) {
             res.status(400).send({
                 messaggio: err.message
