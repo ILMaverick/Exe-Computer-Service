@@ -38,7 +38,6 @@ export class LoginComponent {
     this._auth.login(this.formLogin).subscribe((res) => {
       if (res.risultato) {
         this._auth.saveLoginData(res);
-        this._utente.setRole(res.ruolo);
         this._auth.emitLogged(true);
         console.log('login effettuato');
         this.routeTo('home');

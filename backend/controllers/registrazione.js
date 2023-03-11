@@ -32,16 +32,24 @@ const registrazione = (req, res) => {
                         messaggio: _err.message
                     });
                 } else if (result.length != 0) {
-                    const bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key.pem'), 'utf8'), {
-                        algorithm: 'RS256',
-                        expiresIn: 1800
-                    });
                     let _id_utente;
                     let _ruolo;
                     db(db_utenti, db_password).query('SELECT id_utente, nome, password, ruolo FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.numero_tel, req.body.email], async (_res) => {
                         _id_utente = _res.id_utente;
                         _ruolo = _res.ruolo;
                     });
+                    let bearerToken;
+                    if(result[0].ruolo === 'standard'){
+                    bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key-utenti.pem'), 'utf8'),{
+                        algorithm: 'RS256',
+                        expiresIn: 1800
+                    });
+                    } else {
+                        bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key-tech.pem'), 'utf8'),{
+                            algorithm: 'RS256',
+                            expiresIn: 1800
+                        });
+                    }
                     res.status(200).send({
                         risultato: true,
                         id_utente: _id_utente,

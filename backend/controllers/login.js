@@ -19,10 +19,18 @@ const login = (req, res) => {
         } else if (result.length != 0) {
             await bcrypt.compare(req.body.password, result[0].password).then((_result) => {
                 if (_result) {
-                    const bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key.pem'), 'utf8'),{
+                    let bearerToken;
+                    if(result[0].ruolo === 'standard'){
+                    bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key-utenti.pem'), 'utf8'),{
                         algorithm: 'RS256',
                         expiresIn: 1800
                     });
+                    } else {
+                        bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key-tech.pem'), 'utf8'),{
+                            algorithm: 'RS256',
+                            expiresIn: 1800
+                        });
+                    }
                     res.status(200)
                         .send({
                             risultato: true,

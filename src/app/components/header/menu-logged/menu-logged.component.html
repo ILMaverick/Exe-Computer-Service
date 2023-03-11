@@ -11,7 +11,7 @@
     <div
       class="rounded-full bg-[#005288ff] h-[2px] w-[80%] mx-auto my-[10px] flex"
     ></div>
-    <ul class=" lg:mx-[40px] lg:py-[20px] h-fit list-disc lg:space-y-[10px] space-y-[30px]">
+    <ul *ngIf="ruolo === 'standard'" class=" lg:mx-[40px] lg:py-[20px] h-fit list-disc lg:space-y-[10px] space-y-[30px]">
       <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
         <button class="h-[20px]" [routerLink]="['utenti', id_utente]" (click)="hideMenuUtente()">
           Profilo
@@ -35,6 +35,27 @@
       <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
         <button class="h-[20px]" routerLink="supportoUtente" (click)="hideMenuUtente()">
           Assistenza
+        </button>
+      </li>
+    </ul>
+    <ul *ngIf="ruolo === 'tecnico'" class=" lg:mx-[40px] lg:py-[20px] h-fit list-disc lg:space-y-[10px] space-y-[30px]">
+      <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
+        <button class="h-[20px]" routerLink="utenti/all" (click)="hideMenuUtente()">
+          Utenti
+        </button>
+      <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
+        <button class="h-[20px]" routerLink="hardware" (click)="hideMenuUtente()">
+          Dispositivi
+        </button>
+      </li>
+      <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
+        <button class="h-[20px]" routerLink="interventi" (click)="hideMenuUtente()">
+          Interventi
+        </button>
+      </li>
+      <li class="ml-[20px] text-2xl text-left font-bold text-[#005288ff]">
+        <button class="h-[20px]" routerLink="tickets" (click)="hideMenuUtente()">
+          Tickets
         </button>
       </li>
     </ul>

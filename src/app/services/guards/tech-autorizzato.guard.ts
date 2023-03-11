@@ -14,7 +14,7 @@ export class TechAutorizzatoGuard {
   }
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!this._utente.getRole().match('tecnico')) {
+    if (!this._utente.getRoleFromLocal().match('tecnico')) {
       alert('Utente non autorizzato o sessione scaduta. Effettuare il Login!');
       return this._route.createUrlTree(['home']);
     } else {

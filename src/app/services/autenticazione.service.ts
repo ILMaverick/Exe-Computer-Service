@@ -12,8 +12,6 @@ export class AutenticazioneService {
 
   constructor(private _http: HttpClient) { };
 
-
-
   loginEvent = new EventEmitter<boolean>();
 
   login(form: FormGroup): Observable<Risposta> {
@@ -39,6 +37,7 @@ export class AutenticazioneService {
   saveLoginData(risp: Risposta): void {
     localStorage.setItem('id_utente', risp.id_utente);
     localStorage.setItem('nome', risp.nome);
+    localStorage.setItem('ruolo', risp.ruolo);
     localStorage.setItem('token', risp.token);
     localStorage.setItem('scadenza', (Date.now() + (risp.scadenzaToken * 1000)).toString());
   }

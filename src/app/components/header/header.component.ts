@@ -13,15 +13,14 @@ export class HeaderComponent implements OnInit {
 
   iconaLogin: string = '../../../assets/login.svg';
   isLogged: boolean = false;
-  ruolo: string = '';
   nomeUtente: string = '';
+  ruolo: string = '';
   mostraMenuLogin: boolean = false;
   mostraMenuSito: boolean = false;
 
   constructor(private _auth: AutenticazioneService, private _utente: UtentiService, private _vista: AggiornamentoVistaService) {
     this._auth.getLoginEvent().subscribe(logged => {
       this.isLogged = logged;
-      this.ruolo = this._utente.getRole();
       this.nomeUtente = this._utente.getNameFromLocal()? this._utente.getNameFromLocal() : '';
       this.iconaLogin = this.isLogged ? '../../../assets/utente.svg' : '../../../assets/login.svg';
     })
@@ -57,8 +56,8 @@ export class HeaderComponent implements OnInit {
   checkIconLogin() {
     if (this._auth.isLogged()) {
       this.isLogged = this._auth.isLogged();
+      this.ruolo = this._utente.getRoleFromLocal();
       this.nomeUtente = this._utente.getNameFromLocal();
-      this._utente.getRole();
     }
     this.iconaLogin = this.isLogged ? '../../../assets/utente.svg' : '../../../assets/login.svg';
   }

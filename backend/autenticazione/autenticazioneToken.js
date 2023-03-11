@@ -12,16 +12,29 @@ const authentication = (req, res, next) => {
     else {
         const token = (header.split(' '))[1];
         if(token) {
-            jwt.verify(token, fs.readFileSync(path.resolve(__dirname + '/public-key.pem'), 'utf8'),{ algorithms: ['RS256']}, (err) => {
-                if(err) {
-                    return res.status(403).send({
-                        message: 'Errore nella lettura del token: ' + err
-                    })
-                }
-                else {
-                    next()
-                }
-            });
+            if((header.split(' '))[2] === 'standard'){
+                jwt.verify(token, fs.readFileSync(path.resolve(__dirname + '/public-key-utenti.pem'), 'utf8'),{ algorithms: ['RS256']}, (err) => {
+                    if(err) {
+                        return res.status(403).send({
+                            message: 'Errore nella lettura del token: ' + err
+                        })
+                    }
+                    else {
+                        next()
+                    }
+                });
+            } else {
+                jwt.verify(token, fs.readFileSync(path.resolve(__dirname + '/public-key-tech.pem'), 'utf8'),{ algorithms: ['RS256']}, (err) => {
+                    if(err) {
+                        return res.status(403).send({
+                            message: 'Errore nella lettura del token: ' + err
+                        })
+                    }
+                    else {
+                        next()
+                    }
+                });
+            }
         }
         else {
             return res.status(403).send({

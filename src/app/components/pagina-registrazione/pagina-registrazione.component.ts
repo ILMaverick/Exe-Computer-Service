@@ -62,7 +62,6 @@ export class PaginaRegistrazioneComponent implements OnInit {
         this._auth.registerUser(this.formRegistrazione).subscribe((res) => {
           if (res.risultato) {
             this._auth.saveLoginData(res);
-            this._utente.setRole(res.ruolo);
             this._auth.emitLogged(true);
             console.log('registrazione effettuata');
             this.routeTo('home');

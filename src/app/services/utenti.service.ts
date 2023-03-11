@@ -16,7 +16,6 @@ export class UtentiService {
   }
 
   utentiUrl: string = environment.utentiUrl;
-  _ruolo: string = '';
 
   
   getUserByUserId(id_utente: string): Observable<Utente> {
@@ -26,24 +25,9 @@ export class UtentiService {
   getUserIdByUserName(userName: string): Observable<Risposta> {
     return this._http.post<Risposta>(this.utentiUrl + '/userId/username', { userName: userName });
   }
-
-  getRoleByUserId(id_utente: string): Observable<Risposta>{
-    return this._http.post<Risposta>(this.utentiUrl + '/role', { id_utente: id_utente });
-  }
   
-  getRole(): string {
-    if (this.getUserIdFromLocal() && this._ruolo.match('')){
-      let _ruoloTemp: string = '';
-      this.getRoleByUserId(this.getUserIdFromLocal()).subscribe(risp => {
-        _ruoloTemp = risp.ruolo;
-      })
-      return _ruoloTemp;
-    }
-    return this._ruolo;
-  }
-
-  setRole(ruolo: string): void {
-    this._ruolo = ruolo;
+  getRoleFromLocal(): string {
+    return localStorage.getItem('ruolo')!;
   }
 
   getUserIdFromLocal(): string {

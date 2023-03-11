@@ -11,16 +11,14 @@ import { UtentiService } from 'src/app/services/utenti.service';
 })
 export class MenuLoggedComponent implements OnInit{
 
-  constructor(private route: Router, private _auth: AutenticazioneService, private _utente: UtentiService, private _vista: AggiornamentoVistaService, private _actRoute: ActivatedRoute) {
-    
-   }
-
   id_utente!: string;
   ruolo!: string;
 
+  constructor(private route: Router, private _auth: AutenticazioneService, private _utente: UtentiService, private _vista: AggiornamentoVistaService, private _actRoute: ActivatedRoute) {}
+
   ngOnInit(): void {
     this.id_utente = this._utente.getUserIdFromLocal();
-    this.ruolo = this._utente.getRole();
+    this.ruolo = this._utente.getRoleFromLocal();
   }
 
   hideMenuUtente(){
