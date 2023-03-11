@@ -28,6 +28,7 @@ const login = (req, res) => {
                             risultato: true,
                             id_utente: result[0].id_utente,
                             nome: result[0].nome,
+                            ruolo: result[0].ruolo,
                             token: bearerToken,
                             scadenzaToken: 1800,
                             messaggio: "Login effettuato!"

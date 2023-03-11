@@ -4,14 +4,13 @@ import { environment } from 'src/environments/environment.development';
 import { Risposta } from '../models/risposta';
 import { Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
-import { UtentiService } from './utenti.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticazioneService {
 
-  constructor(private _http: HttpClient, private _utente: UtentiService) { };
+  constructor(private _http: HttpClient) { };
 
 
 
@@ -30,7 +29,7 @@ export class AutenticazioneService {
   };
 
   emitLogged(logged: boolean): void {
-    return this.loginEvent.emit(logged);
+    this.loginEvent.emit(logged);
   }
 
   registerUser(form: FormGroup): Observable<Risposta> {

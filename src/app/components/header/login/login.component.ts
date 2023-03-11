@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticazioneService } from 'src/app/services/autenticazione.service';
 import { AggiornamentoVistaService } from 'src/app/services/aggiornamento-vista.service';
+import { UtentiService } from 'src/app/services/utenti.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { AggiornamentoVistaService } from 'src/app/services/aggiornamento-vista.
 export class LoginComponent {
 
 
-  constructor(private _route: Router, private _auth: AutenticazioneService, private _formBuild: FormBuilder, private _vista: AggiornamentoVistaService) { }
+  constructor(private _route: Router, private _auth: AutenticazioneService, private _formBuild: FormBuilder, private _vista: AggiornamentoVistaService, private _utente: UtentiService) { }
 
   formLogin = this._formBuild.group({
     userName: ['', [Validators.required, Validators.maxLength(40)]],
@@ -37,6 +38,7 @@ export class LoginComponent {
     this._auth.login(this.formLogin).subscribe((res) => {
       if (res.risultato) {
         this._auth.saveLoginData(res);
+        this._utente.setRole(res.ruolo);
         this._auth.emitLogged(true);
         console.log('login effettuato');
         this.routeTo('home');

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { Router, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AutenticazioneService } from '../autenticazione.service';
 import { UtentiService } from '../utenti.service';
 
@@ -18,8 +18,7 @@ export class UtenteAutorizzatoGuard {
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.idUrl === this._utente.getUserIdFromLocal()) {
       alert('Utente non autorizzato o sessione scaduta. Effettuare il Login!');
-      this._route.createUrlTree(['home']);
-      return false;
+      return this._route.createUrlTree(['home']);
     } else {
       return true;
     }

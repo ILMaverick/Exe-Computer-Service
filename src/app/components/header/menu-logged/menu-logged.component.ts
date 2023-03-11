@@ -5,20 +5,22 @@ import { AggiornamentoVistaService } from 'src/app/services/aggiornamento-vista.
 import { UtentiService } from 'src/app/services/utenti.service';
 
 @Component({
-  selector: 'app-menu-utente',
-  templateUrl: './menu-utente.component.html',
-  styleUrls: ['./menu-utente.component.css']
+  selector: 'app-menu-logged',
+  templateUrl: './menu-logged.component.html',
+  styleUrls: ['./menu-logged.component.css']
 })
-export class MenuUtenteComponent implements OnInit{
+export class MenuLoggedComponent implements OnInit{
 
   constructor(private route: Router, private _auth: AutenticazioneService, private _utente: UtentiService, private _vista: AggiornamentoVistaService, private _actRoute: ActivatedRoute) {
     
    }
 
   id_utente!: string;
+  ruolo!: string;
 
   ngOnInit(): void {
     this.id_utente = this._utente.getUserIdFromLocal();
+    this.ruolo = this._utente.getRole();
   }
 
   hideMenuUtente(){
@@ -32,8 +34,6 @@ export class MenuUtenteComponent implements OnInit{
     this.routeTo('home');
     this.hideMenuUtente();
   }
-
-
 
   private routeTo(link: string) {
     this.route.navigate([link]);

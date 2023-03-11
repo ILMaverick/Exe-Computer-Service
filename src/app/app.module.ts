@@ -15,8 +15,8 @@ import { PaginaServiziComponent } from './components/pagina-servizi/pagina-servi
 import { HeaderComponent } from './components/header/header.component';
 import { PaginaPrincipaleComponent } from './components/pagina-principale/pagina-principale.component';
 import { PaginaRegistrazioneComponent } from './components/pagina-registrazione/pagina-registrazione.component';
-import { LoginComponent } from './components/header/userComponent/login/login.component';
-import { MenuUtenteComponent } from './components/header/userComponent/menu-utente/menu-utente.component';
+import { LoginComponent } from './components/header/login/login.component';
+import { MenuLoggedComponent } from './components/header/menu-logged/menu-logged.component';
 import { MenuSitoComponent } from './components/header/menu-sito/menu-sito.component';
 import { PaginaNonTrovataComponent } from './components/pagina-non-trovata/pagina-non-trovata.component';
 import { AutenticazioneService } from './services/autenticazione.service';
@@ -27,6 +27,13 @@ import { ValidazioneService } from './services/interceptors/validazione.service'
 import { PaginaInCostruzioneComponent } from './components/pagina-in-costruzione/pagina-in-costruzione.component';
 import { PaginaUtentiComponent } from './components/pagina-utenti/pagina-utenti.component';
 import { PaginaUtenteComponent } from './components/pagina-utenti/pagina-utente/pagina-utente.component';
+import { PaginaAssistenzaTecnicaComponent } from './components/pagina-assistenza-tecnica/pagina-assistenza-tecnica.component';
+import { PaginaAssistenzaUtenteComponent } from './components/pagina-assistenza-utente/pagina-assistenza-utente.component';
+import { PaginaChiSiamoComponent } from './components/pagina-chi-siamo/pagina-chi-siamo.component';
+import { PaginaContattiComponent } from './components/pagina-contatti/pagina-contatti.component';
+import { PaginaHardwareComponent } from './components/pagina-hardware/pagina-hardware.component';
+import { PaginaInterventiComponent } from './components/pagina-interventi/pagina-interventi.component';
+import { PaginaTicketsComponent } from './components/pagina-tickets/pagina-tickets.component';
 
 
 
@@ -40,14 +47,21 @@ import { PaginaUtenteComponent } from './components/pagina-utenti/pagina-utente/
     LoginComponent,
     PaginaServiziComponent,
     MenuSitoComponent,
-    MenuUtenteComponent,
+    MenuLoggedComponent,
     PaginaNonTrovataComponent,
     FooterComponent,
     ConfrontaPasswordValidator,
     PaginaRecuperoCredenzialiComponent,
     PaginaInCostruzioneComponent,
     PaginaUtentiComponent,
-    PaginaUtenteComponent
+    PaginaUtenteComponent,
+    PaginaAssistenzaTecnicaComponent,
+    PaginaAssistenzaUtenteComponent,
+    PaginaChiSiamoComponent,
+    PaginaContattiComponent,
+    PaginaHardwareComponent,
+    PaginaInterventiComponent,
+    PaginaTicketsComponent,
   ],
   imports: [
     BrowserModule,

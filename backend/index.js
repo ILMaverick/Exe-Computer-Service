@@ -4,7 +4,7 @@ const dotEnv = require('dotenv');
 const utentiRouter = require('./routes/utentiRouter.js');
 const techRouter = require('./routes/techRouter.js');
 const login = require('./controllers/login.js');
-const register = require('./controllers/registrazione.js');
+const registrazione = require('./controllers/registrazione.js');
 
 dotEnv.config({ path: __dirname + '/.env' });
 
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/login', login);
-app.post('/register', register);
+app.post('/register', registrazione);
 app.use('/users', utentiRouter);
 app.use('/tech', techRouter);
 // app.use('/interventions', interventiRouter);

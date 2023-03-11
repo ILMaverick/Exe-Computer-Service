@@ -13,8 +13,7 @@ export class UtenteAutenticatoGuard{
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this._auth.isLogged()) {
       alert('Utente non autorizzato o sessione scaduta. Effettuare il Login!');
-      this._route.createUrlTree(['home']);
-      return false;
+      return this._route.createUrlTree(['home']);
     } else {
       return true;
     }
@@ -23,8 +22,7 @@ export class UtenteAutenticatoGuard{
 
   canActivateRegistration(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this._auth.isLogged()) {
-      this._route.createUrlTree(['home']);
-      return false;
+      return this._route.createUrlTree(['home']);
     } else {
       return true;
     }

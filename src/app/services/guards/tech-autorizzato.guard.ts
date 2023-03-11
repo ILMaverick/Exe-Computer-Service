@@ -12,15 +12,11 @@ export class TechAutorizzatoGuard {
   constructor (private _auth: AutenticazioneService, private _utente: UtentiService,private _route: Router){
 
   }
-  
-  ruolo!: string;
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this._utente.getRole().subscribe(res => {this.ruolo = res.ruolo});
-    if (!this.ruolo.match('tecnico')) {
+    if (!this._utente.getRole().match('tecnico')) {
       alert('Utente non autorizzato o sessione scaduta. Effettuare il Login!');
-      this._route.createUrlTree(['home']);
-      return false;
+      return this._route.createUrlTree(['home']);
     } else {
       return true;
     }
