@@ -7,11 +7,11 @@ const fs = require('fs');
 
 dotEnv.config({ path: __dirname + '/../.env' });
 
-const db_utenti = process.env.DB_USER;
-const db_password = process.env.DB_USER_PASSWORD;
+const db_utente = process.env.DB_UTENTI;
+const db_password_utente = process.env.DB_PASSWORD_UTENTI;
 
 const getIdUtenteByUserName = (req, res) => {
-    db(db_utenti, db_password).query('SELECT id_utente FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.userName, req.body.userName], (err, result) => {
+    db(db_utente, db_password_utente).query('SELECT id_utente FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.userName, req.body.userName], (err, result) => {
         if (err) {
             res.status(400).send({
                 messaggio: err.message
@@ -35,7 +35,7 @@ const getIdUtenteByUserName = (req, res) => {
 }
 
 const getRuoloByIdUtente = (req, res) => {
-    db(db_utenti, db_password).query('SELECT ruolo FROM utenti WHERE id_utente = ?', [req.body.id_utente], (err, result) => {
+    db(db_utente, db_password_utente).query('SELECT ruolo FROM utenti WHERE id_utente = ?', [req.body.id_utente], (err, result) => {
         if (err) {
             res.status(400).send({
                 messaggio: err.message
@@ -55,7 +55,7 @@ const getRuoloByIdUtente = (req, res) => {
 }
 
 const getUtenteByIdUtente = (req, res) => {
-    db(db_utenti, db_password).query('SELECT * FROM utenti WHERE id_utente = ?', [req.body.id_utente], (err, result) => {
+    db(db_utente, db_password_utente).query('SELECT * FROM utenti WHERE id_utente = ?', [req.body.id_utente], (err, result) => {
         if (err) {
             res.status(400).send({
                 messaggio: err.message

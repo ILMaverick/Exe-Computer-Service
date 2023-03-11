@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterState } from '@angular/router';
+import { Utente } from 'src/app/models/utente';
 import { TechsService } from 'src/app/services/techs.service';
 
 @Component({
@@ -10,8 +11,11 @@ import { TechsService } from 'src/app/services/techs.service';
 export class PaginaUtentiComponent implements OnInit{
 
   constructor(private _tech: TechsService, private route: Router, private ActRoute: ActivatedRoute){
-console.log(this.route, this.ActRoute)
+    // this.utenti = 
   }
+
+  // utenti: Utente[];
+
   ngOnInit(): void {
     
   }

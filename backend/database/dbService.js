@@ -9,8 +9,8 @@ function createConnection(nomeUtente, password) {
         host: process.env.DB_HOST,
         user: nomeUtente,
         password: password,
-        database: process.env.DB_DATABASE,
-        port: process.env.DB_PORT
+        database: process.env.DB_NOME,
+        port: process.env.DB_PORTA
     });
 
     _db.connect(error => {
