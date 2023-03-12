@@ -11,9 +11,10 @@ import { UtentiService } from 'src/app/services/utenti.service';
 export class PaginaUtenteComponent implements OnInit {
 
   constructor(private _utente: UtentiService, private _route: Router, private ActRoute: ActivatedRoute) {
-    
+  
   }
 
+  titoloPagina:string = ''
   idUrl!: string;
   utente!: Utente;
 
@@ -24,6 +25,7 @@ export class PaginaUtenteComponent implements OnInit {
     })
     this._utente.getUserByUserId(this.idUrl).subscribe(res => {
       this.utente = res
+      this.titoloPagina = 'Profilo di ' + this.utente.nome;
     })
   }
 
