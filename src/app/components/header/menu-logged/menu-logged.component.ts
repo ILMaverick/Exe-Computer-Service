@@ -11,6 +11,7 @@ import { UtentiService } from 'src/app/services/utenti.service';
 })
 export class MenuLoggedComponent implements OnInit{
 
+  nomeUtente!: string;
   id_utente!: string;
   ruolo!: string;
 
@@ -19,6 +20,7 @@ export class MenuLoggedComponent implements OnInit{
   ngOnInit(): void {
     this.id_utente = this._utente.getUserIdFromLocal();
     this.ruolo = this._utente.getRoleFromLocal();
+    this.nomeUtente = this._utente.getNameFromLocal();
   }
 
   hideMenuUtente(){
