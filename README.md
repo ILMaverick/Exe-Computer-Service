@@ -13,7 +13,7 @@ Alla base del progetto, vengono utilizzati vari framework e librerie di JavaScri
   - dotEnv per la creazione di un environment
   - nodemon per la creazione di un socket autoaggiornante
 
-<h2>Caratteristiche</hh2>
+<h2>Caratteristiche</h2>
 
 - L'applicazione si basa su creazione e autenticazione dell'utente, che sia esso cliente o tecnico,
   scambio di informazioni (dalla semplice vista del profilo, fino alla richiesta di viste personalizzate) e autorizzazioni.
