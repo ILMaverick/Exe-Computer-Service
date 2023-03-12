@@ -15,7 +15,7 @@
     </div>
     <div class="h-auto w-[80%] flex flex-col items-center space-y-[10px]">
       <div *ngFor="let utente of utenti" class="h-[60px] w-full flex flex-row items-center">
-        <button class="h-full w-[120px] rounded-l-[15px] rounded-r-none bg-[#005288ff] flex flex-col items-center">
+        <button class="h-full w-[120px] rounded-l-[15px] rounded-r-none bg-[#005288ff] flex flex-col items-center" routerLink="/utenti/{{utente.id_utente}}">
           <p class="h-full ml-auto text-3xl font-bold text-[#ffffff] flex">
             {{utente.id_utente}}
           </p>

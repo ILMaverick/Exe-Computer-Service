@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Utente } from 'src/app/models/utente';
 import { UtentiService } from 'src/app/services/utenti.service';
 
@@ -10,15 +10,19 @@ import { UtentiService } from 'src/app/services/utenti.service';
 })
 export class PaginaUtenteComponent implements OnInit {
 
-  constructor(private _utente: UtentiService, private _route: Router) {
+  constructor(private _utente: UtentiService, private _route: Router, private ActRoute: ActivatedRoute) {
+    
   }
 
-
+  idUrl!: string;
   utente!: Utente;
 
 
   ngOnInit(): void {
-    this._utente.getUserByUserId(this._utente.getUserIdFromLocal()).subscribe(res => {
+    this.ActRoute.params.subscribe(p => {
+      this.idUrl = p['id']
+    })
+    this._utente.getUserByUserId(this.idUrl).subscribe(res => {
       this.utente = res
     })
   }
