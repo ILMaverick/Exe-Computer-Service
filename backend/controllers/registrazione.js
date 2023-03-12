@@ -30,32 +30,8 @@ const registrazione = (req, res) => {
                         messaggio: _err.message
                     });
                 } else if (result.length != 0) {
-                    let _id_utente;
-                    let _ruolo;
-                    db(db_utente, db_password_utente).query('SELECT id_utente, ruolo FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.numero_tel, req.body.email], async (err, _res) => {
-                        console.log(_res)
-                        _id_utente = _res[0].id_utente;
-                        _ruolo = _res[0].ruolo;
-                    });
-                    let bearerToken;
-                    if(_ruolo === 'standard'){
-                    bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key-utenti.pem'), 'utf8'),{
-                        algorithm: 'RS256',
-                        expiresIn: 1800
-                    });
-                    } else {
-                        bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key-tech.pem'), 'utf8'),{
-                            algorithm: 'RS256',
-                            expiresIn: 1800
-                        });
-                    }
                     res.status(200).send({
                         risultato: true,
-                        id_utente: _id_utente,
-                        ruolo: _ruolo,
-                        nome: req.body.nome,
-                        token: bearerToken,
-                        scadenzaToken: 1800,
                         messaggio: "Utente Registrato"
                     });
                 }
