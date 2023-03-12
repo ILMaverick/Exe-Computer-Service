@@ -16,7 +16,7 @@ const registrazione = (req, res) => {
             res.status(400).send({
                 messaggio: err.message
             });
-        } else if (_res[0].length != 0) {
+        } else if (_res.length != 0) {
             res.status(200).send({
                 risultato: false,
                 messaggio: 'Utente presente, modificare telefono o email'
@@ -32,12 +32,13 @@ const registrazione = (req, res) => {
                 } else if (result.length != 0) {
                     let _id_utente;
                     let _ruolo;
-                    db(db_utente, db_password_utente).query('SELECT id_utente, nome, password, ruolo FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.numero_tel, req.body.email], async (_res) => {
-                        _id_utente = _res.id_utente;
-                        _ruolo = _res.ruolo;
+                    db(db_utente, db_password_utente).query('SELECT id_utente, ruolo FROM utenti WHERE numero_tel = ? OR email = ?', [req.body.numero_tel, req.body.email], async (err, _res) => {
+                        console.log(_res)
+                        _id_utente = _res[0].id_utente;
+                        _ruolo = _res[0].ruolo;
                     });
                     let bearerToken;
-                    if(result[0].ruolo === 'standard'){
+                    if(_ruolo === 'standard'){
                     bearerToken = jwt.sign({}, fs.readFileSync(path.resolve(__dirname + '/private-key-utenti.pem'), 'utf8'),{
                         algorithm: 'RS256',
                         expiresIn: 1800
