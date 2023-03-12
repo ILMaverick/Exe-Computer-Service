@@ -6,5 +6,6 @@ export const environment = {
     techUrl: 'http://localhost:3000/tech',
     hardwaresUrl: 'http://localhost:3000/hardwares',
     interventiUrl: 'http://localhost:3000/interventi',
+    aggiornamentiUrl: 'http://localhost:3000/aggiornamenti',
     production: false
 };

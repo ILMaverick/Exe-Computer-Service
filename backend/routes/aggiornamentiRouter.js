@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const hardware = require('../controllers/hardware.js');
+const aggiornamenti = require('../controllers/aggiornamenti.js');
+const authentication = require('./../autenticazione/autenticazioneToken');
 
 router.use(express.json())
 
-router.get('/', hardware.getHardwares);
-router.post('/userName', hardware.getHardwaresByUtente);
-router.post('/idHardware', hardware.getHardwareByIdHardware);
+router.post('/idAggiornamento', authentication, aggiornamenti.getAggiornamentoByIdAggiornamento);
+router.post('/idIntervento', authentication, aggiornamenti.getAggiornamentiByIntervento);
 
 module.exports = router;

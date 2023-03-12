@@ -1,4 +1,4 @@
-<div class="h-screen w-full lg:pt-[240px] pt-[90px] flex flex-col items-center">
+<div class="h-auto lg:h-screen w-full lg:pt-[240px] pt-[90px] lg:pb-[90px] flex flex-col items-center">
   <div
     class="h-full w-full lg:border-[2px] bg-white border-x-[#005288ff] shadow-lg shadow-[#948e8e] flex flex-col items-center"
   >
@@ -14,23 +14,23 @@
       </div>
     </div>
     <div class="h-auto w-[80%] flex flex-col items-center space-y-[10px]">
-      <div *ngFor="let utente of utenti" class="h-[60px] w-full flex flex-row items-center">
-        <button class="h-full w-[120px] rounded-l-[15px] rounded-r-none bg-[#005288ff] flex flex-col items-center" routerLink="/utenti/{{utente.id_utente}}">
-          <p class="h-full ml-auto text-3xl font-bold text-[#ffffff] flex">
+      <div *ngFor="let utente of utenti" class="h-fit w-full flex lg:flex-row flex-col items-center">
+        <button class="h-full w-[120px] lg:rounded-l-[15px] rounded-[15px] lg:rounded-r-none bg-[#005288ff] flex flex-col items-center" routerLink="/utenti/{{utente.id_utente}}">
+          <p class="h-full lg:ml-auto text-3xl font-bold text-[#ffffff] flex">
             {{utente.id_utente}}
           </p>
         </button>
-        <div class="h-full w-full rounded-l-none rounded-r-[15px] bg-[#ffffff] border-[2px] border-x-[#005288ff] flex flex-row items-center divide-x-[2px]">
-          <p class="h-full w-[20%] mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
+        <div class="h-full w-full lg:rounded-l-none lg:rounded-r-[15px] rounded-[15px] bg-[#ffffff] border-[2px] border-x-[#005288ff] flex lg:flex-row flex-col items-center lg:divide-x-[2px]">
+          <p class="h-full lg:w-[20%] lg:mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
             {{utente.nome}}
           </p>
-          <p class="h-full w-[20%] mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
+          <p class="h-full lg:w-[20%] lg:mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
             {{utente.cognome}}
           </p>
-          <p class="h-full w-[20%] mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
+          <p class="h-full lg:w-[20%] lg:mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
             {{utente.numero_tel}}
           </p>
-          <p class="h-full w-[40%] mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
+          <p class="h-full lg:w-[20%] lg:mx-[2px] text-center text-xl font-bold text-[#005288ff] flex">
             {{utente.email}}
           </p>
         </div>
