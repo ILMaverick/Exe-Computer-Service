@@ -49,4 +49,4 @@ Alla base del progetto, vengono utilizzati vari framework e librerie di JavaScri
 
 - Attacchi SQL injection vengono evitati grazie alla validazione degli input e alle query parametrizzate
 
-Parte delle funzionalità legate alla gestione dei dispositivi e dei loro interventi sono ancora in fase di progettazione.
+Parte delle funzionalità legate alla gestione dei dispositivi e dei loro interventi sono ancora in fase di progettazione
