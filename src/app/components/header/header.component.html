@@ -1,0 +1,66 @@
+<header
+  class="h-[90px] lg:h-[200px] w-full max-w-[1680px] px-[15px] mx-auto fixed inset-x-0 flex flex-col items-center z-50"
+>
+  <div
+    class="sm:max-lg:hidden h-[15px] lg:h-[45px] w-full bg-white top-0 fixed z-10"
+  ></div>
+  <div
+    class="sm:max-lg:hidden bg-center rounded-t-[30px] h-full w-full z-20"
+    style="background-image: url(../../../assets/exe-background.svg)"
+  ></div>
+
+  <div
+    class="sm:max-lg:hidden absolute bottom-[4px] rounded-t-[30px] h-[75%] w-[400px] outline-none lg:outline-[2px] lg:outline-offset-0 outline-[#005288ff] z-30"
+  ></div>
+  <div
+    class="absolute rounded-b-[5px] lg:-bottom-[20%] lg:rounded-[20px] h-full lg:h-[40%] w-full bg-white border-t-[4px] border-x-[4px] border-[#005288ff] shadow-md shadow-[#948e8e] flex justify-around z-40"
+  >
+    <button
+      class="h-[50%] my-auto pl-[20px] flex-shrink-0"
+      (click)="openOrHideSideMenu()"
+    >
+      <img class="h-full" src="../../../assets/menu_icona.svg" alt="menu" />
+    </button>
+    <button class="h-[50%] my-auto pl-[15px] flex-shrink-0">
+      <img
+        class="h-full"
+        src="../../../assets/lente_ingrandimento.svg"
+        alt="lente_ingrandimento"
+      />
+    </button>
+    <div class="flex-1"></div>
+    <div class="h-full pr-[20px] flex flex-shrink-0">
+      <button
+        class="h-[50%] my-auto flex flex-row flex-shrink-0"
+        (click)="openOrHideLoginMenu()"
+      >
+        <img class="h-full mr-[15px]" [src]="iconaLogin" alt="utente" />
+        <p class="my-auto text-2xl text-[#005288ff] sm:max-lg:hidden">
+          {{ isLogged ? "Ciao, " + nomeUtente : "Accedi" }}!
+        </p>
+      </button>
+    </div>
+  </div>
+  <button
+    class="absolute inset-y-2 lg:inset-y-auto lg:bottom-[4px] lg:rounded-t-[30px] h-[90%] w-[150px] lg:h-[75%] lg:w-[400px] lg:px-[40px] lg:pt-[20px] bg-white z-50"
+    (click)="hideAll()"
+    routerLink="/home"
+  >
+    <img
+      class="h-[80%] lg:h-[100%] lg:mx-auto"
+      src="../../../assets/logo_vettoriale.svg"
+      alt="logo_exe"
+    />
+  </button>
+  <div
+    class="absolute lg:top-[235px] lg:right-[20px] enabled:h-screen lg:h-fit sm:max-lg:inset-y-[70px] sm:max-lg:inset-x-0 lg:z-50"
+  >
+    <app-login *ngIf="mostraMenuLogin && !isLogged" (hideLoginEvent)="openOrHideLoginMenu()"></app-login>
+    <app-menu-logged *ngIf="mostraMenuLogin && isLogged" (hideMenuUtenteEvent)="openOrHideLoginMenu()" ></app-menu-logged>
+  </div>
+  <div
+    class="absolute lg:top-[235px] lg:left-[20px] enabled:h-screen lg:h-fit sm:max-lg:inset-x-0 lg:z-50"
+  >
+    <app-menu-sito *ngIf="mostraMenuSito"></app-menu-sito>
+  </div>
+</header>
